@@ -14,10 +14,10 @@ Online Course Pre-selection System for BJUT, MIS, 2011-2015
 ---
 
 登录页面   
-![Login Page](https://raw.github.com/xystudioo/BJUT-XG-Courses/master/assets/other/temp/ScreenShot1.png)   
+![Login Page](https://raw.github.com/xystudioo/BJUT-XG-Courses/master/assets/temp/ScreenShot1.png)   
 
 选课页面   
-![Select Page](https://raw.github.com/xystudioo/BJUT-XG-Courses/master/assets/other/temp/ScreenShot2.png)   
+![Select Page](https://raw.github.com/xystudioo/BJUT-XG-Courses/master/assets/temp/ScreenShot2.png)   
    
    
 还有些功能以后再完善~   
