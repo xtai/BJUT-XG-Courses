@@ -1,0 +1,343 @@
+<div class="alert alert-warning">
+  <p style="font-size: 18px;"><span class="glyphicon glyphicon-bell"></span> 请先把<strong> 这学期(大三上) </strong>选的课选好，再根据<strong> 需要的学分 </strong>和<strong> 选课人数 </strong>来决定其他学期的选课。</p>
+  <!--div class="progress progress-striped active">
+    <div class="progress-bar progress-bar-warning"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+      <span class="sr-only">45% Complete</span>
+    </div>
+  </div-->
+</div>
+<div class="container" id="top_div" data-spy="affix" data-offset-top="111">
+  <div class="row hidden-xs">
+    <div class="col-sm-3">
+      <div class="content header_1">
+        <div class="row_header">
+          <h3>必修</h3>
+          <h4>需要 32 学分, 已选 32 学分</h4>
+          <h4><span class="label label-success"><span class="glyphicon glyphicon-ok"></span> 已完成教学计划</span></h4>
+          <hr />
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="content header_2">
+        <div class="row_header">
+          <h3>学科基础选修课</h3>
+          <h4>需要 9 学分, 已选 <span id="s_2_t">32</span> 学分</h4>
+          <h4 id="l_2_t"><span class="label label-danger"><span class="glyphicon glyphicon-remove"></span> 未完成教学计划</span></h4>
+          <hr />
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="content header_3">
+        <div class="row_header">
+          <h3>专业任选课</h3>
+          <h4>需要 8 学分, 已选 <span id="s_3_t">32</span> 学分</h4>
+          <h4 id="l_3_t"><span class="label label-danger"><span class="glyphicon glyphicon-remove"></span> 未完成教学计划</span></h4>
+          <hr />
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="content header_4"> 
+        <div class="row_header">
+          <h3>专业限选课</h3>
+          <h4>需要 12 学分, 已选 <span id="s_4_t">32</span> 学分</h4>
+          <h4 id="l_4_t"><span class="label label-danger"><span class="glyphicon glyphicon-remove"></span> 未完成教学计划</span></h4>
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="content header_1">
+      <div class="row_header">
+        <h3>必修</h3>
+        <h4>需要 32 学分, 已选 32 学分</h4>
+        <h4><span class="label label-success"><span class="glyphicon glyphicon-ok"></span> 已完成教学计划</span></h4>
+        <hr />
+      </div>
+      <h4>大三上</h4>
+      <?php cards(5, "必修"); ?>
+      <hr />
+      <h4>大三下</h4>
+      <?php cards(6, "必修"); ?>
+      <hr />
+      <h4>大四上</h4>
+      <?php cards(7, "必修"); ?>
+      <hr />
+      <h4>大四下</h4>
+      <?php cards(8, "必修"); ?>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="content header_2">
+      <div class="row_header">
+        <h3>学科基础选修课</h3>
+        <h4>需要 9 学分, 已选 <span id="s_2">32</span> 学分</h4>
+        <h4 id="l_2"><span class="label label-danger"><span class="glyphicon glyphicon-remove"></span> 未完成教学计划</span></h4>
+        <hr />
+      </div>
+      <h4>大三上</h4>
+      <?php $a = cards(5, "学科基础选修课"); ?>
+      <hr />
+      <h4>大三下</h4>
+      <?php $a += cards(6, "学科基础选修课"); ?>
+      <hr />
+      <h4>大四上</h4>
+      <?php $a += cards(7, "学科基础选修课");?>
+      <div id="s_2_default" style="display: none;"><?php echo $a; ?></div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="content header_3">
+      <div class="row_header">
+        <h3>专业任选课</h3>
+        <h4>需要 8 学分, 已选 <span id="s_3">32</span> 学分</h4>
+        <h4 id="l_3"><span class="label label-danger"><span class="glyphicon glyphicon-remove"></span> 未完成教学计划</span></h4>
+        <hr />
+      </div>
+      <h4>大三上</h4>
+      <?php $a = cards(5, "专业任选课"); ?>
+      <hr />
+      <h4>大三下</h4>
+      <?php $a += cards(6, "专业任选课"); ?>
+      <hr />
+      <h4>大四上</h4>
+      <?php $a += cards(7, "专业任选课"); ?>
+      <div id="s_3_default" style="display: none;"><?php echo $a; ?></div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="content header_4">
+      <div class="row_header">
+        <h3>专业限选课</h3>
+        <h4>需要 12 学分, 已选 <span id="s_4">32</span> 学分</h4>
+        <h4 id="l_4"><span class="label label-danger"><span class="glyphicon glyphicon-remove"></span> 未完成教学计划</span></h4>
+        <hr />
+      </div>
+      <h4>大三上</h4>
+      <?php $a = cards(5, "专业限选课"); ?>
+      <hr />
+      <h4>大三下</h4>
+      <?php $a += cards(6, "专业限选课"); ?>
+      <hr />
+      <h4>大四上</h4>
+      <?php $a += cards(7, "专业限选课"); ?>
+      <div id="s_4_default" style="display: none;"><?php echo $a; ?></div>
+    </div>
+  </div>
+</div>
+<div class="bottom_save">
+  <button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-floppy-disk"></span> 保存一下</button>
+</div>
+<div class="fixed_save">
+  <button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-floppy-disk"></span> 保存一下</button>
+</div>
+
+<style>
+.alert{
+  margin-left: -5px;
+  margin-right: -5px;
+}
+.col-sm-3{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.content{
+  margin-bottom: 20px;
+  border: 1px solid #BBB;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, .6);
+}
+.content h4{
+  text-align: left;
+  margin-top: -5px;
+  margin-left: 10px;
+}
+.row_header h3{
+  font-size: 20px;
+  color: #555;
+  font-weight: 200;
+  text-align: center;
+  padding-bottom: 0px;
+}
+.row_header h4{
+  font-size: 15px;
+  text-align: center;
+  color: #444;
+  padding-top: 0px;
+  padding-bottom: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.row_header h4 span{
+  font-size: 14px;
+}
+.row_header{
+  border-radius: 10px 10px 0 0;
+  padding-top: 1px;
+}
+.header_1 .row_header{
+  background-color: rgba(255, 180, 180, .8);
+}
+.header_2 .row_header,
+.header_2 .checked{
+  background-color: rgba(250, 250, 180, .8);
+}
+.header_3 .row_header,
+.header_3 .checked{
+  background-color: rgba(180, 250, 180, .8);
+}
+.header_4 .row_header,
+.header_4 .checked{
+  background-color: rgba(160, 200, 250, .8);
+}
+.subjects{
+  margin: 10px;
+  border: 1px solid #BBB;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, .5);
+  cursor: pointer;
+}
+.header_1 .subjects{
+  cursor: default;
+}
+.subjects > input{
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.subjects > hr{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.subjects > p{
+  font-size: 14px;
+  margin-top: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+#top_div{
+  margin-top: -97px;
+  padding-left: 0px;
+  padding-right: 30px;
+  margin-bottom: 0px;
+  z-index: 2;
+}
+#top_div .content{
+  border-radius: 0;
+}
+#top_div hr{
+  margin-top: 0px;
+  margin-bottom: 0;
+  border-color: rgba(255, 255, 255, .0);
+}
+#top_div .row_header{
+  border-radius: 0;
+}
+#top_div h3{
+  margin-top: 5px;
+}
+.bottom_save .btn-danger,
+.fixed_save .btn-danger{
+  background-color: rgba(242, 69, 63, .9);
+}
+.bottom_save .btn-danger:hover,
+.bottom_save .btn-danger:focus,
+.fixed_save .btn-danger:hover,
+.fixed_save .btn-danger:focus{
+  background-color: rgba(230, 54, 45, .9);
+}
+.bottom_save button,
+.fixed_save button{
+  width: 200px;
+  height: 45px;
+}
+.bottom_save{
+  text-align: center;
+  visibility: hidden;
+}
+.fixed_save button{
+  position:fixed;
+  margin:auto;
+  left:0;
+  right:0;
+  top:90%;
+  bottom:0;
+}
+</style>
+
+<script type="text/javascript">
+var s = new Array();
+var r = new Array(0,32,9,8,12);
+$(document).ready(function(){
+  $("#top_div").hide();
+  for(var i = 2; i <= 4; i++){
+    s[i]=parseInt($("#s_"+i+"_default").html());
+    update();
+  }
+  $(window).scroll(function(){
+    if($(window).scrollTop()>111){
+      $("#top_div").show();
+    }else{
+      $("#top_div").hide();
+    }
+    if(($(document.body).height()-$(window).scrollTop())>730){
+      $(".fixed_save").show();
+      $(".bottom_save").css("visibility","hidden");
+    }else{
+      $(".fixed_save").hide();
+      $(".bottom_save").css("visibility","visible");
+    }
+  });
+});
+function update(){
+  for(var i = 2; i <= 4; i++){
+    $("#s_"+i).html(s[i]);
+    $("#s_"+i+"_t").html(s[i]);
+    if(s[i] < r[i]){
+      $("#l_"+i).html("<span class=\"label label-danger\"><span class=\"glyphicon glyphicon-remove\"></span> 未完成教学计划</span>");
+      $("#l_"+i+"_t").html("<span class=\"label label-danger\"><span class=\"glyphicon glyphicon-remove\"></span> 未完成教学计划</span>");
+    }else{
+      $("#l_"+i).html("<span class=\"label label-success\"><span class=\"glyphicon glyphicon-ok\"></span> 已完成教学计划</span>");
+      $("#l_"+i+"_t").html("<span class=\"label label-success\"><span class=\"glyphicon glyphicon-ok\"></span> 已完成教学计划</span>");
+    }
+  }
+}
+function change_val($x,$y,$z){
+  if($y == 1){
+    return;
+  }else if(document.getElementById("box"+$x).checked){
+    s[$y]-=$z;
+    document.getElementById("box"+$x).checked=false;
+    $("#"+$x).removeClass("checked");
+    $("#enroll_"+$x).html(parseInt($("#enroll_"+$x).html())-1);
+    update();
+  }else{
+    s[$y]+=$z;
+    $("#"+$x).addClass("checked");
+    document.getElementById("box"+$x).checked=true;
+    $("#enroll_"+$x).html(parseInt($("#enroll_"+$x).html())+1);
+    update();
+  }
+}
+function change_val_2($x,$y,$z){
+  if($y == 1){
+    return;
+  }else if(document.getElementById("box"+$x).checked){
+    document.getElementById("box"+$x).checked=false;
+  }else{
+    document.getElementById("box"+$x).checked=true;
+  }
+}
+function avoid_val($x,$y,$z){
+  if($y == 1){
+    return;
+  }else{
+    change_val($x,$y,$z)
+  }
+}
+</script>

@@ -1,0 +1,43 @@
+<?php if(!$page_bg){ ?>
+      <hr />
+      <p  class="text-center" style="color: #666;">© 2013 Xiaoyu Tai&nbsp;&nbsp;/&nbsp;&nbsp;Code &amp; Design by <a href="http://taixiaoyu.com">Xiaoyu Tai</a></p>
+      <br />
+<?php } ?>
+    </div>
+    <p id='backt' style='display:none;'>
+      <a href='#'>回顶部 <span class='glyphicon glyphicon-arrow-up'></span></a>
+    </p>
+
+<style>
+  #backt{
+    position:fixed;
+    right:20px;
+    bottom:3px;
+  }
+  #backt a{
+    font-weight: 100;
+    color: #777;
+  }
+  #backt a:hover,
+  #backt a:focus{
+    text-decoration: none;
+    color: #555;
+  }
+</style>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#search').show();
+    $(window).scroll(function(){
+      if ($(window).scrollTop()>300){
+        $('#backt').css({'bottom':'3px'});
+        $('#backt').slideDown('fast');
+      }else{
+        $('#backt').slideUp('fast');
+      }
+    });
+  });
+</script>
+
+  </body>
+</html>
