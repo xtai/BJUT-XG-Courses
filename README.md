@@ -3,6 +3,8 @@ BJUT-XG-Courses
 
 Online Course Pre-selection System for BJUT, MIS, 2011-2015
 
+Available at [http://xg.taixiaoyu.com][http://xg.taixiaoyu.com]
+
 ---
 
 又到一年选课时   
