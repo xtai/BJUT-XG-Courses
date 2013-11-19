@@ -22,4 +22,4 @@ Available at http://xg.taixiaoyu.com/
 ![Select Page](https://raw.github.com/xystudioo/BJUT-XG-Courses/master/assets/temp/ScreenShot2.png)   
    
    
-还有些功能以后再完善~   
+还有些功能以后再完善~

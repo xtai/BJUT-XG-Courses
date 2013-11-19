@@ -1,12 +1,9 @@
 <?php
+  //for home.php dispaly each course and if it selected or not
   function cards($time,$type){
     global $page_path;
     $type_num;
     $num = 0;
-    $M = new MySQL();
-    if(!$M->con()){
-      echo "Cannot connet to Database";
-    }
     $result = mysql_query("SELECT * FROM subjects_detail WHERE time = '$time' AND type = '$type';");
     $numrows = mysql_num_rows($result);
     if($numrows == 0){
@@ -43,7 +40,7 @@
         <p style=\"text-align: right;\">";
 
         if($type=="必修"){
-          echo "已选: 53人";
+          echo "已选: 51人";
         }else{
           echo "已选: <span id=\"enroll_$row[id]\">$row[enroll]</span>人";
         }
@@ -58,18 +55,14 @@
         echo"/></p>
       </div>";
       }
-      $M->close_con();
       return $num;
     }
   }
+  //for subject.php to display content, option can be 'all', 'list', and database table column name
   function subject($id,$option){
-    $M = new MySQL();
-    if(!$M->con()){
-      echo "Cannot connet to Database";
-    }
     $result = mysql_query("SELECT * FROM subjects_detail WHERE id = '$id';");
     $row = mysql_fetch_array($result);
-    if($option == "all"){
+    if($option == "all"){//option 'all' stands for display course detial like type, way for exam
       $type_num;
       switch($row[type]){
         case "必修":
@@ -115,14 +108,13 @@
       <h4>开课学院:  $row[school]</h4>
       <h4>已选人数: ";
       if($row[type]=="必修"){
-        echo "53";
+        echo "51";
       }else{
         echo "$row[enroll]";
       }
       echo "人</h4>";
-      $M->close_con();
       return;
-    }elseif($option == "list"){
+    }elseif($option == "list"){//option 'list' stands for dispaly course selected students list
       if($row[type] == "必修"){
         $result1 = mysql_query("SELECT id, name FROM users WHERE users.id LIKE '111101%';");
         $numrows1 = mysql_num_rows($result1);
@@ -177,12 +169,10 @@
       }
       echo "</div>
       </div>";
-      $M->close_con();
       return;
-    }else{
-      $M->close_con();
+    }else{//other options stand for dispaly course table column content
       if($option=="enroll"&&$row[type]=="必修"){
-        return "53";
+        return "51";
       }else{
         return $row[$option];
       }

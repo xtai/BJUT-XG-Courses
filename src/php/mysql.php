@@ -1,28 +1,16 @@
 <?php
-class MySQL{
-  private $location;
-  private $username;
-  private $password;
-  private $database;
-  function __construct(){
-    $this->location = "localhost";
-    $this->username = "tai";
-    $this->password = "12345678";
-    $this->database = "xg_courses";
-  }
-  public function con(){
-    $con = mysql_connect($this->location,$this->username,$this->password);
-    if (!$con){
-      return 0;
-    } 
-    mysql_query("SET NAMES UTF8;");
-    mysql_select_db($this->database, $con);
-    date_default_timezone_set("Asia/Hong_Kong");
-    return 1;
-  }
-  public function close_con(){
-    $con = mysql_connect("$this->location","$this->username","$this->password");
-    mysql_close($con);
-  }
-}
+//functions for MySQL connect and disconnect
+  global $con;
+  $mysql_location = "localhost";
+  $mysql_username = "tai";
+  $mysql_password = "12345678";
+  $mysql_database = "xg_courses";
+  //connecting mysql
+  $con = mysql_connect($mysql_location, $mysql_username, $mysql_password);
+  if (!$con){
+    die("Could not connect: " . mysql_error());
+  } 
+  mysql_query("SET NAMES UTF8;");
+  mysql_select_db($mysql_database, $con);
+  date_default_timezone_set("Asia/Hong_Kong");
 ?>
