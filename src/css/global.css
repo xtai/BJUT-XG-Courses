@@ -1,0 +1,45 @@
+body{
+  padding-top: 70px;
+}
+a{
+  color: #D55;
+}
+a:hover,
+a:focus{
+  color: #F55;
+  text-decoration: none;
+}
+::selection {
+  background: #F99;
+  color: #FFF;
+}
+hr{
+  border-top: 1px solid #BBB;
+}
+.navbar-inverse{
+  background-color: rgba(0, 0, 0, .8);
+}
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:hover,
+.navbar-inverse .navbar-nav>.active>a:focus{
+  background-color: rgba(0, 0, 0, .5);
+}
+.dropdown-menu>.active>a,
+.dropdown-menu>.active>a:hover,
+.dropdown-menu>.active>a:focus{
+  background-color: #E77;
+}
+#backt{
+  position:fixed;
+  right:20px;
+  bottom:3px;
+}
+#backt a{
+  font-weight: 100;
+  color: #777;
+}
+#backt a:hover,
+#backt a:focus{
+  text-decoration: none;
+  color: #555;
+}

@@ -1,0 +1,128 @@
+.alert{
+  margin-left: -5px;
+  margin-right: -5px;
+}
+.col-sm-3{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.content{
+  margin-bottom: 20px;
+  border: 1px solid #BBB;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, .6);
+}
+.content h4{
+  text-align: left;
+  margin-top: -5px;
+  margin-left: 10px;
+}
+.row_header h3{
+  font-size: 20px;
+  color: #555;
+  font-weight: 200;
+  text-align: center;
+  padding-bottom: 0px;
+}
+.row_header h4{
+  font-size: 14px;
+  text-align: center;
+  color: #444;
+  padding-top: 0px;
+  padding-bottom: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.row_header h4 span{
+  font-size: 14px;
+}
+.row_header{
+  border-radius: 10px 10px 0 0;
+  padding-top: 1px;
+}
+.header_1 .row_header{
+  background-color: rgba(255, 180, 180, .8);
+}
+.header_2 .row_header,
+.header_2 .checked{
+  background-color: rgba(250, 250, 180, .8);
+}
+.header_3 .row_header,
+.header_3 .checked{
+  background-color: rgba(180, 250, 180, .8);
+}
+.header_4 .row_header,
+.header_4 .checked{
+  background-color: rgba(160, 200, 250, .8);
+}
+.subjects{
+  margin: 10px;
+  border: 1px solid #BBB;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, .5);
+  cursor: pointer;
+}
+.header_1 .subjects{
+  cursor: default;
+}
+.subjects > input{
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.subjects > hr{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.subjects > p{
+  font-size: 14px;
+  margin-top: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+#top_div{
+  margin-top: -97px;
+  padding-left: 0px;
+  padding-right: 30px;
+  margin-bottom: 0px;
+  z-index: 2;
+}
+#top_div .content{
+  border-radius: 0;
+}
+#top_div hr{
+  margin-top: 0px;
+  margin-bottom: 0;
+  border-color: rgba(255, 255, 255, .0);
+}
+#top_div .row_header{
+  border-radius: 0;
+}
+#top_div h3{
+  margin-top: 5px;
+}
+.bottom_save .btn-danger,
+.fixed_save .btn-danger{
+  background-color: rgba(242, 69, 63, .9);
+}
+.bottom_save .btn-danger:hover,
+.bottom_save .btn-danger:focus,
+.fixed_save .btn-danger:hover,
+.fixed_save .btn-danger:focus{
+  background-color: rgba(230, 54, 45, .9);
+}
+.bottom_save button,
+.fixed_save button{
+  width: 200px;
+  height: 45px;
+}
+.bottom_save{
+  text-align: center;
+  visibility: hidden;
+}
+.fixed_save_b{
+  position:fixed;
+  margin:auto;
+  left:0;
+  right:0;
+}

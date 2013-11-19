@@ -35,29 +35,7 @@
   </div>
 </nav>
 
-<style>
-.navbar-inverse{
-  background-color: rgba(0, 0, 0, .8);
-}
-.navbar-inverse .navbar-nav>.active>a,
-.navbar-inverse .navbar-nav>.active>a:hover,
-.navbar-inverse .navbar-nav>.active>a:focus{
-  background-color: rgba(0, 0, 0, .5);
-}
-.dropdown-menu>.active>a,
-.dropdown-menu>.active>a:hover,
-.dropdown-menu>.active>a:focus{
-  background-color: #E77;
-}
-</style>
-
 <script type="text/javascript">
-function nav_active($x){
-  $("#nav_"+$x).addClass("active");
-  if($x==31||$x==32){
-    $("#nav_3").addClass("active");
-  }
-}
 $(document).ready(function(){
   nav_active(<?php echo $page_nav; ?>);
 });

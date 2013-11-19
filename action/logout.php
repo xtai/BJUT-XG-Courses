@@ -1,6 +1,6 @@
 <?php
-  include_once "../src/init.php";
-  include_once "../src/user.php";
+  include_once "../src/php/init.php";
+  include_once "../src/php/user.php";
   logout();
   header("Location: ../");
 ?>

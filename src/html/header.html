@@ -7,34 +7,20 @@
     <meta name="author" content="Xiaoyu Tai">
     <title><?php echo $page_title; ?></title>
     <link href="<?php echo $page_path; ?>/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo $page_path; ?>/src/css/global.css" rel="stylesheet">
     <script src="<?php echo $page_path; ?>/assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo $page_path; ?>/assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="<?php echo $page_path; ?>/src/js/global.js" type="text/javascript"></script>
     <style>
-      body{
-        padding-top: 70px;
-        background-image: url(
-        <?php
-          echo $page_path."/assets/media/bg";
-          if($page_bg){
-            echo "1";
-          }
-        ?>.png);
-      }
-      a{
-        color: #D55;
-      }
-      a:hover,
-      a:focus{
-        color: #F55;
-        text-decoration: none;
-      }
-      ::selection {
-        background: #F99;
-        color: #FFF;
-      }
-      hr{
-        border-top: 1px solid #BBB;
-      }
+    body{
+      background-image: url(
+      <?php
+        echo $page_path."/assets/media/bg";
+        if($page_bg){
+          echo "1";
+        }
+      ?>.png);
+    }
     </style>
   </head>
   <body>

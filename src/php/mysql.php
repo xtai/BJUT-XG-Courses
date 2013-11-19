@@ -21,7 +21,7 @@ class MySQL{
     return 1;
   }
   public function close_con(){
-    $con = mysql_connect("localhost","tai","12345678");
+    $con = mysql_connect("$this->location","$this->username","$this->password");
     mysql_close($con);
   }
 }
