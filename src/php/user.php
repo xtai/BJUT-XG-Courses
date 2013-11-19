@@ -9,7 +9,7 @@
     $numrows = mysql_num_rows($result);
     if($numrows == 1){
       $row = mysql_fetch_assoc($result);
-      $_SESSION[xg_name]=$row[name];
+      $_SESSION['xg_name']=$row[name];
       $_SESSION[xg_id]=$row[id];
       return 1;
     }else{
@@ -18,11 +18,11 @@
     $M->close_con();
   }
   function logout(){
-    unset($_SESSION[xg_name]);
+    unset($_SESSION['xg_name']);
     unset($_SESSION[xg_id]);
   }
   function user(){
-    if($_SESSION[xg_name]){
+    if($_SESSION['xg_name']){
       return 1;
     }else{
       return 0;
