@@ -7,7 +7,8 @@
   $mysql_database = "xg_courses";
   //connecting mysql
   $con = mysql_connect($mysql_location, $mysql_username, $mysql_password);
-  if (!$con){
+  if(!$con)
+  {
     die("Could not connect: " . mysql_error());
   } 
   mysql_query("SET NAMES UTF8;");

@@ -61,7 +61,6 @@
   border: 1px solid #BBB;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, .5);
-  cursor: pointer;
 }
 .header_1 .subjects{
   cursor: default;
@@ -82,7 +81,7 @@
   margin-bottom: 5px;
 }
 #top_div{
-  margin-top: -208px;
+  margin-top: -142px;
   padding-left: 0px;
   padding-right: 30px;
   margin-bottom: 0px;
@@ -101,29 +100,4 @@
 }
 #top_div h3{
   margin-top: 5px;
-}
-.bottom_save .btn-danger,
-.fixed_save .btn-danger{
-  background-color: rgba(242, 69, 63, .9);
-}
-.bottom_save .btn-danger:hover,
-.bottom_save .btn-danger:focus,
-.fixed_save .btn-danger:hover,
-.fixed_save .btn-danger:focus{
-  background-color: rgba(230, 54, 45, .9);
-}
-.bottom_save button,
-.fixed_save button{
-  width: 200px;
-  height: 45px;
-}
-.bottom_save{
-  text-align: center;
-  visibility: hidden;
-}
-.fixed_save_b{
-  position:fixed;
-  margin:auto;
-  left:0;
-  right:0;
 }

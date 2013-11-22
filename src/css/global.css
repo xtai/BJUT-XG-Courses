@@ -9,7 +9,7 @@ a:focus{
   color: #F55;
   text-decoration: none;
 }
-::selection {
+::selection{
   background: #F99;
   color: #FFF;
 }
@@ -42,4 +42,22 @@ hr{
 #backt a:focus{
   text-decoration: none;
   color: #555;
+}
+.messenger-message{
+  margin: 0px !important;
+  padding: 10px !important;
+}
+.messenger-close{
+  top: 0px !important;
+  left: -5px !important;
+}
+.messenger-message-inner{
+  padding: 7px !important;
+}
+.messenger-message.alert-success{
+  background-color: rgba(222, 240, 215, 0.9) !important;
+}
+.messenger-message.alert-error,
+.messenger-message.alert-danger{
+  background-color: rgba(242, 222, 222, 0.9) !important;
 }
