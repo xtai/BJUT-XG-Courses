@@ -68,7 +68,7 @@
           if($numrows2 == 1)
           {
             echo "checked=\"\" ";
-            $num+=$row[point];
+            $num+=$row['point'];
           }
           if($type == "必修")
           {
@@ -78,7 +78,7 @@
         }
         elseif($option == "mine")
         {
-          $num+=$row[point];
+          $num+=$row['point'];
           echo "<div class=\"subjects type_$type_num checked\" id=\"$row[id]\">
                 <p style=\"font-weight:600; font-size: 18px; color:#D55;\"><a id=\"title$row[id]\" href=\"$page_path/view/subject.php?i=$row[id]\">$row[name]</a></p>
                 <hr />
@@ -107,7 +107,7 @@
     if($option == "all")
     {
       $type_num;
-      switch($row[type])
+      switch($row['type'])
       {
         case "必修":
           $type_num = 0;
@@ -130,7 +130,7 @@
       <h4>学分: $row[point]</h4>
       <h4>课程性质: <span class=\"type_$type_num\">$row[type]</span></h4>
       <h4>开课时间: ";
-      switch($row[time])
+      switch($row['time'])
       {
         case "5":
           echo "大三上";
@@ -152,7 +152,7 @@
       <h4>考试形式: $row[exam]</h4>
       <h4>开课学院:  $row[school]</h4>
       <h4>已选人数: ";
-      if($row[type] == "必修")
+      if($row['type'] == "必修")
       {
         echo "51";
       }
@@ -165,7 +165,7 @@
     }
     elseif($option == "list")
     {//option 'list' stands for dispaly course selected students list
-      if($row[type] == "必修")
+      if($row['type'] == "必修")
       {
         $result1 = mysql_query("SELECT id, name FROM users WHERE users.id LIKE '111101%';");
         $numrows1 = mysql_num_rows($result1);
