@@ -1,13 +1,6 @@
 <?php
   include_once "./src/php/init.php";
   include_once "./src/php/user.php";
-
-  //test code
-  //git clone again
-  //and add test code 
-  //pull request
-  echo get_current_user();
-
   if(user()){
     header("Location: ./view/home.php");
   }else{
