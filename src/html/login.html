@@ -12,3 +12,11 @@
 </form>
 
 <link href="<?php echo $page_path; ?>/src/css/login.css" rel="stylesheet">
+<?php
+  if(isset($_SESSION['xg_pwd'])){
+    unset($_SESSION['xg_pwd']);
+?>
+<script src="<?php echo $page_path; ?>/src/js/login.js" type="text/javascript"></script>
+<?php
+  }
+?>

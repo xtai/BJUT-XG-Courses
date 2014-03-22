@@ -3,7 +3,7 @@
   $page_path = "..";
   init_mysql();
   include_once "../src/php/user.php";
-  if(login($_POST['username'],$_POST['password'])==1){
+  if(login($_POST['username'],$_POST['password'])){
     mysql_close($con);
     header("Location: ../view/home.php");
   }else{

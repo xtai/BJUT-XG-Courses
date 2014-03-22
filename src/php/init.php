@@ -45,7 +45,7 @@
   //initalizae for subject.html view
   function init_subject($title, $path)
   {
-    global $page_title,$page_path;
+    global $page_title, $page_path, $page_bg;
     $page_path = $path;
     init_mysql();
     $page_title = subject($title,"name")." &middot; 信管专业选课指南";

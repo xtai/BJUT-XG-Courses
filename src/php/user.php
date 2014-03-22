@@ -24,6 +24,7 @@
       }
       else
       {
+        $_SESSION['xg_pwd'] = true;
         return 0;
       }
     }
