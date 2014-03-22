@@ -10,8 +10,13 @@
 .content{
   margin-bottom: 20px;
   border: 1px solid #BBB;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
   background-color: rgba(255, 255, 255, .6);
+}
+.content > hr{
+  margin-top: 0px;
+  margin-bottom: 15px;
+  border-top: 1px solid #BBB;
 }
 .content h4{
   text-align: left;
@@ -57,9 +62,9 @@
   background-color: rgba(160, 200, 250, .8);
 }
 .subjects{
-  margin: 10px;
-  border: 1px solid #BBB;
-  border-radius: 5px;
+  margin: 0px;
+  border-top: 1px solid #BBB;
+  border-bottom: 1px solid rgba(0,0,0,0);
   background-color: rgba(255, 255, 255, .5);
 }
 .header_1 .subjects{
@@ -70,8 +75,9 @@
   margin-bottom: 10px;
 }
 .subjects > hr{
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+  border-top: 1px solid rgba(176, 176, 176, 0);
 }
 .subjects > p{
   font-size: 14px;
@@ -81,7 +87,7 @@
   margin-bottom: 5px;
 }
 #top_div{
-  margin-top: -142px;
+  margin-top: -215px;
   padding-left: 0px;
   padding-right: 30px;
   margin-bottom: 0px;

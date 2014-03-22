@@ -13,6 +13,11 @@
   border-radius: 10px;
   background-color: rgba(255, 255, 255, .6);
 }
+.content > hr{
+  margin-top: 0px;
+  margin-bottom: 15px;
+  border-top: 1px solid #BBB;
+}
 .content h4{
   text-align: left;
   margin-top: -5px;
@@ -56,10 +61,13 @@
 .header_4 .checked{
   background-color: rgba(160, 200, 250, .8);
 }
+.content > div:nth-last-of-type(2){
+  border-radius: 0 0 10px 10px;
+}
 .subjects{
-  margin: 10px;
-  border: 1px solid #BBB;
-  border-radius: 5px;
+  margin: 0px;
+  border-top: 1px solid #BBB;
+  border-bottom: 1px solid rgba(0,0,0,0);
   background-color: rgba(255, 255, 255, .5);
   cursor: pointer;
 }
@@ -71,8 +79,9 @@
   margin-bottom: 10px;
 }
 .subjects > hr{
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+  border-top: 1px solid rgba(176, 176, 176, 0);
 }
 .subjects > p{
   font-size: 14px;
@@ -82,7 +91,7 @@
   margin-bottom: 5px;
 }
 #top_div{
-  margin-top: -208px;
+  margin-top: -281px;
   padding-left: 0px;
   padding-right: 30px;
   margin-bottom: 0px;

@@ -5,7 +5,7 @@
     header("Location: ../");
   }else{
     init("留言板 &middot; 信管专业选课指南", "..");
-    init_nav("6");
+    init_nav("4");
     include_once "../src/html/message.html";
     init_footer();
   }

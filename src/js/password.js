@@ -4,12 +4,12 @@ function c()
   $value_2 = $("#password2").val();
   if($value_1 == $value_2 && $value_1 == "")
   {
-    $("#button").val("先输新密码呀");
+    $("#button").val("先输新密码吧");
     $("#button").attr("disabled","");
   }
   else if($value_1 == $value_2)
   {
-    $("#button").val("好了");
+    $("#button").val("记住了按这里");
     $("#button").removeAttr("disabled");
   }
   else

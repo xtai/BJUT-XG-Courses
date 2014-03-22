@@ -6,6 +6,7 @@
   $page_nav;
   $con;
   session_start();
+  ini_set("date.timezone","Asia/Hong_Kong");
   //insert webpage header and initalizae gloabl path for every script to run
   function init($title, $path)
   {

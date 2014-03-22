@@ -54,17 +54,16 @@
           echo "\" id=\"$row[id]\" onclick=\"change_val($row[id],$type_num,$row[point])\" >
           <p style=\"font-weight:600; font-size: 18px; color:#D55;\"><a id=\"title$row[id]\" onclick=\"avoid_val($row[id],$type_num,$row[point]);\" href=\"$page_path/view/subject.php?i=$row[id]\">$row[name]</a></p>
           <hr />
-          <p style=\"text-align: right;\">$row[exam] | $row[point] 学分</p>
           <p style=\"text-align: right;\">";
           if($type == "必修")
           {
-            echo "已选: 51人";
+            echo "已选 51 人";
           }
           else
           {
-            echo "已选: <span id=\"enroll_$row[id]\">$row[enroll]</span>人";
+            echo "已选 <span id=\"enroll_$row[id]\">$row[enroll]</span> 人";
           }
-          echo " | <strong>选这门课</strong> <input id=\"box$row[id]\" type=\"checkbox\" name=\"$row[id]\" onclick=\"change_val_2($row[id],$type_num,$row[point])\" ";
+          echo " | $row[exam] | $row[point] 学分 | <input id=\"box$row[id]\" type=\"checkbox\" name=\"$row[id]\" onclick=\"change_val_2($row[id],$type_num,$row[point])\" ";
           if($numrows2 == 1)
           {
             echo "checked=\"\" ";
@@ -82,8 +81,7 @@
           echo "<div class=\"subjects type_$type_num checked\" id=\"$row[id]\">
                 <p style=\"font-weight:600; font-size: 18px; color:#D55;\"><a id=\"title$row[id]\" href=\"$page_path/view/subject.php?i=$row[id]\">$row[name]</a></p>
                 <hr />
-                <p style=\"text-align: right;\">$row[exam] | $row[point] 学分</p>
-                <p style=\"text-align: right;\">已选: ";
+                <p style=\"text-align: right;\">$row[exam] | $row[point] 学分 | 已选 ";
           if($type == "必修")
           {
             echo "51";
@@ -92,7 +90,7 @@
           {
             echo "<span id=\"enroll_$row[id]\">$row[enroll]</span>";
           }
-          echo "人 | <strong>已选这门课</strong></p></div>";
+          echo " 人 | $row[exam] | $row[point] 学分 | <strong>已选</strong></p></div>";
         }
       }
       return $num;
@@ -234,7 +232,7 @@
     //other options stand for dispaly course table column content
     else
     {
-      if($option == "enroll" && $row[type] == "必修")
+      if($option == "enroll" && $row['type'] == "必修")
       {
         return "51";
       }
