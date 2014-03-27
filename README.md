@@ -23,7 +23,7 @@ Available at http://xg.taixiaoyu.com/
 
 ---
 
-截图太占地方了我给删掉了，现在可以直接去 xg.taixiaoyu.com 体验了   
+UPDATE 2014-3-22:
+当做一个课的课设了，重构了好多代码然后继续做后台功能...
 
-> 体验 ID: 1111
-> 密码同上
+---

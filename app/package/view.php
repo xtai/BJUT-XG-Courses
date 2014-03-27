@@ -29,6 +29,7 @@
     private function view(){
       if(!$this->User->login_state() && ($this->name == "login" || $this->name == "admin_login")){
         include_once "views/header.html";
+        echo "<div class=\"container\">";
         include_once "views/".$this->name.".html";
         include_once "views/footer.html";
       }elseif($this->User->login_state()){

@@ -13,21 +13,41 @@
 </form>
 
 <link href="<?php echo $this->path; ?>/assets/css/login.css" rel="stylesheet">
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(document).keydown(function(event){
+      if(event.which == 186){
+        lunch_war();
+      }
+    });
+  });
+  Messenger.options = {
+    extraClasses: 'messenger-fixed messenger-on-top',
+    theme: 'block'
+  }
+  function lunch_war(){
+    Messenger().post({
+      type: "error",
+      hideAfter: 10,
+      showCloseButton: true,
+      message: "<br><br><br><a href=\"./admin/\" style=\"font-size: 150px;\"><span class=\"glyphicon glyphicon-star\"></span></a><br><br><br>"
+    });
+  }
+  function wrong_pwd(){
+    Messenger().post({
+      type: "error",
+      hideAfter: 4,
+      showCloseButton: true,
+      message: "用户不存在或密码错误!"
+    });
+  }
+</script>
 <?php
   if(isset($_SESSION['xg_pwd'])){
     unset($_SESSION['xg_pwd']);
 ?>
 <script type="text/javascript">
-  Messenger.options = {
-    extraClasses: 'messenger-fixed messenger-on-top',
-    theme: 'block'
-  }
-  Messenger().post({
-    type: "error",
-    hideAfter: 4,
-    showCloseButton: true,
-    message: "用户不存在或密码错误!"
-  });
+  wrong_pwd();
 </script>
 <?php
   }

@@ -13,21 +13,41 @@
 </form>
 
 <link href="<?php echo $this->path; ?>/assets/css/login.css" rel="stylesheet">
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(document).keydown(function(event){
+      if(event.which == 186){
+        lunch_war();
+      }
+    });
+  });
+  Messenger.options = {
+    extraClasses: 'messenger-fixed messenger-on-top',
+    theme: 'block'
+  }
+  function lunch_war(){
+    Messenger().post({
+      type: "error",
+      hideAfter: 10,
+      showCloseButton: true,
+      message: "<br><br><br><a href=\"../\" style=\"font-size: 150px; margin-left:-20px;\"><span class=\"glyphicon glyphicon-send\"></span></a><br><br><br>"
+    });
+  }
+  function wrong_pwd(){
+    Messenger().post({
+      type: "error",
+      hideAfter: 4,
+      showCloseButton: true,
+      message: "Something wrong, man!"
+    });
+  }
+</script>
 <?php
   if(isset($_SESSION['xg_pwd'])){
     unset($_SESSION['xg_pwd']);
 ?>
 <script type="text/javascript">
-Messenger.options = {
-  extraClasses: 'messenger-fixed messenger-on-top',
-  theme: 'block'
-}
-Messenger().post({
-  type: "error",
-  hideAfter: 4,
-  showCloseButton: true,
-  message: "Something wrong, man!"
-});
+  wrong_pwd();
 </script>
 <?php
   }

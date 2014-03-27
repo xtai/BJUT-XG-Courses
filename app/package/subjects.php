@@ -13,13 +13,15 @@
   class Subject extends MySQL{
     private $path;
     private $temp;
+    private $major;
     public function __construct($path){
       $this->path = $path;
     }
     public function cards($time, $type, $option){
+      $this->major = substr($_SESSION['xg_id'],0,5);
       if($option == "all"){
         $mine   = false;
-        $result = MySQL::query("SELECT * FROM subjects_detail WHERE time = '".$time."' AND type = '".$type."' ORDER BY id;");
+        $result = MySQL::query("SELECT * FROM subjects_detail WHERE major ='".$this->major."' AND time = '".$time."' AND type = '".$type."' ORDER BY id;");
       }elseif($option == "mine"){
         $mine   = true;
         $result = MySQL::query("SELECT * FROM selects_detail WHERE time = '".$time."' AND type = '".$type."' AND uid='".$_SESSION['xg_id']."' ORDER BY id;");

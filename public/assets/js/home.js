@@ -18,7 +18,7 @@ $(document).ready(function()
   update();
   $(window).scroll(function()
   {
-    if($(window).scrollTop()>295)
+    if($(window).scrollTop()>275)
     {
       $("#top_div").show();
     }

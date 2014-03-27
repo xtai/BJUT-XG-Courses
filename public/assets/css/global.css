@@ -1,5 +1,5 @@
 body{
-  padding-top: 20px;
+  //padding-top: 20px;
 }
 a{
   color: #D55;
@@ -16,10 +16,10 @@ a:focus{
 hr{
   border-top: 1px solid #BBB;
 }
-nav{
+/*nav{
   margin-left: -5px;
   margin-right: -5px;
-}
+}*/
 .navbar-inverse{
   background-color: rgba(0, 0, 0, .8);
 }
