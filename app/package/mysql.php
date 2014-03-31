@@ -9,7 +9,11 @@
     private $password;
     private $database;
     private $con;
-    public function __construct(){
+    public function __construct($location, $username, $password, $database){
+      $this->location = $location;
+      $this->username = $username;
+      $this->password = $password;
+      $this->database = $database;
     }
     public function query($query_string){
       $result;

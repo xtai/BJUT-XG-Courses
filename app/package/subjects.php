@@ -14,17 +14,19 @@
     private $path;
     private $temp;
     private $major;
-    public function __construct($path){
-      $this->path = $path;
+    private $MySQL;
+    public function __construct($MySQL, $path){
+      $this->MySQL = $MySQL;
+      $this->path  = $path;
     }
     public function cards($time, $type, $option){
       $this->major = substr($_SESSION['xg_id'],0,5);
       if($option == "all"){
         $mine   = false;
-        $result = MySQL::query("SELECT * FROM subjects_detail WHERE major ='".$this->major."' AND time = '".$time."' AND type = '".$type."' ORDER BY id;");
+        $result = $this->MySQL->query("SELECT * FROM subjects_detail WHERE major ='".$this->major."' AND time = '".$time."' AND type = '".$type."' ORDER BY id;");
       }elseif($option == "mine"){
         $mine   = true;
-        $result = MySQL::query("SELECT * FROM selects_detail WHERE time = '".$time."' AND type = '".$type."' AND uid='".$_SESSION['xg_id']."' ORDER BY id;");
+        $result = $this->MySQL->query("SELECT * FROM selects_detail WHERE time = '".$time."' AND type = '".$type."' AND uid='".$_SESSION['xg_id']."' ORDER BY id;");
       }
       $type_num = $this->switch_type($type);
       $row_num  = mysql_num_rows($result);
@@ -32,7 +34,7 @@
         echo "<div class=\"subjects\"><p style=\"text-align:center; font-weight:200; font-size: 16px; margin-top:18px; margin-bottom:16px;\">N/A</p></div>";
       }else{
         while($course = mysql_fetch_array($result)){
-          $selected = mysql_num_rows(MySQL::query("SELECT * FROM selects WHERE uid = '$_SESSION[xg_id]' AND sid='$course[id]' LIMIT 1;"));
+          $selected = mysql_num_rows($this->MySQL->query("SELECT * FROM selects WHERE uid = '$_SESSION[xg_id]' AND sid='$course[id]' LIMIT 1;"));
           $this->card($course['id'], $course['name'], $type_num, $course['enroll'], $course['exam'], $course['point'], $selected, $mine);
         }
       }
@@ -40,7 +42,7 @@
     }
     function sum_credits($type){
       $credits = 0;
-      $result = MySQL::query("SELECT * FROM selects_detail WHERE type = '".$type."' AND uid='".$_SESSION['xg_id']."' ORDER BY id;");
+      $result = $this->MySQL->query("SELECT * FROM selects_detail WHERE type = '".$type."' AND uid='".$_SESSION['xg_id']."' ORDER BY id;");
       while($course = mysql_fetch_array($result)){
         $credits += $course['point'];
       }
@@ -48,7 +50,7 @@
     }
     //function subject is to display content, option can be 'all', 'list', and database table column names
     public function subject($id, $option){
-      $result = MySQL::query("SELECT * FROM subjects_detail WHERE id = '$id';");
+      $result = $this->MySQL->query("SELECT * FROM subjects_detail WHERE id = '$id';");
       $course = mysql_fetch_array($result);
       if($option == "all"){
       //option 'all' stands for display course detial like type, way for exam
@@ -68,15 +70,15 @@
     //for AJAX dealing with database
     public function ajax_change($id, $option){
       if($option == 'insert'){
-        MySQL::query("INSERT INTO selects (`uid`, `sid`) VALUES ('".$_SESSION['xg_id']."', '".$id."');");
+        $this->MySQL->query("INSERT INTO selects (`uid`, `sid`) VALUES ('".$_SESSION['xg_id']."', '".$id."');");
         echo $this->have_course($id);
       }elseif($option == 'delete'){
-        MySQL::query("DELETE FROM selects WHERE `uid`='$_SESSION[xg_id]' and`sid`='$id';");
+        $this->MySQL->query("DELETE FROM selects WHERE `uid`='$_SESSION[xg_id]' and`sid`='$id';");
         echo !$this->have_course($id);
       }
     }
     public function have_course($id){
-      $row_num = mysql_num_rows(MySQL::query("SELECT * FROM selects WHERE uid = '".$_SESSION['xg_id']."' AND sid = '".$id."';"));
+      $row_num = mysql_num_rows($this->MySQL->query("SELECT * FROM selects WHERE uid = '".$_SESSION['xg_id']."' AND sid = '".$id."';"));
       if($row_num){
         return 1;
       }else{
@@ -147,9 +149,9 @@
     }
     private function enrollment_list_class($course, $class){
       if($course['type'] == "必修"){
-        $result = MySQL::query("SELECT id, name FROM users WHERE users.id LIKE '".$class."%';");
+        $result = $this->MySQL->query("SELECT id, name FROM users WHERE users.id LIKE '".$class."%';");
       }else{
-        $result = MySQL::query("SELECT selects.uid AS id, users.name AS name FROM selects JOIN users WHERE selects.uid=users.id AND selects.sid = '".$course['id']."' AND users.id LIKE '".$class."%';");
+        $result = $this->MySQL->query("SELECT selects.uid AS id, users.name AS name FROM selects JOIN users WHERE selects.uid=users.id AND selects.sid = '".$course['id']."' AND users.id LIKE '".$class."%';");
       }
       $enrollment_num = mysql_num_rows($result);
       echo "<div class=\"col-sm-6\"><h4>".$class."班</h4>";

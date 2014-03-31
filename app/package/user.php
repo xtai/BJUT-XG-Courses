@@ -18,8 +18,10 @@
   * . login_db($username, $password, $table)
   *   login and check with database
   */
-  class User extends MySQL{
-    public function __construct(){
+  class User{
+    private $MySQL;
+    public function __construct($MySQL){
+      $this->MySQL = $MySQL;
     }
     public function login($username, $password, $type){
       if($this->is_legal($username) && $this->is_legal($password)){
@@ -43,8 +45,8 @@
         $this->login_data();
         $new_password = $this->md5_password($new_password . 'taixiaoyu');
         $datetime = date('Y-m-d H:i:s');
-        MySQL::query("UPDATE ".$this->user['type']." SET pwd = '".$new_password."' WHERE id = '".$_SESSION['xg_id']."';");
-        MySQL::query("UPDATE ".$this->user['type']." SET lastpwdchange = '".$datetime."' WHERE id = '".$_SESSION['xg_id']."';");
+        $this->MySQL->query("UPDATE ".$this->user['type']." SET pwd = '".$new_password."' WHERE id = '".$_SESSION['xg_id']."';");
+        $this->MySQL->query("UPDATE ".$this->user['type']." SET lastpwdchange = '".$datetime."' WHERE id = '".$_SESSION['xg_id']."';");
         return 1;
       }else{
         return 0;
@@ -73,15 +75,15 @@
     }
     private function login_db($username, $password, $table){
       $password = $this->md5_password($password);
-      $result = MySQL::query("SELECT * FROM ".$table." WHERE id = '".$username."' AND pwd = '".$password."';");
+      $result = $this->MySQL->query("SELECT * FROM ".$table." WHERE id = '".$username."' AND pwd = '".$password."';");
       $row = mysql_fetch_array($result);
       $numrows = mysql_num_rows($result);
       if($numrows){
         //Setting last login time and adding login times.
         $datetime = date('Y-m-d H:i:s');
         $row['logintimes']++;
-        MySQL::query("UPDATE ".$table." SET lastlogin = '".$datetime."' WHERE id = '".$row['id']."';");
-        MySQL::query("UPDATE ".$table." SET logintimes = '".$row['logintimes']."' WHERE id = '".$row['id']."';");
+        $this->MySQL->query("UPDATE ".$table." SET lastlogin = '".$datetime."' WHERE id = '".$row['id']."';");
+        $this->MySQL->query("UPDATE ".$table." SET logintimes = '".$row['logintimes']."' WHERE id = '".$row['id']."';");
         //Using sessions
         $_SESSION['xg_type'] = $table;
         $_SESSION['xg_name'] = $row['name'];
