@@ -1,7 +1,7 @@
 <?php
   //Import All Classes
-  ini_set("include_path", ".://Users/taixiaoyu/Sites/xg/app/"); 
-  $path = "http://127.0.0.1/~taixiaoyu/xg/public/";
+  ini_set("include_path", ".://var/www/xg/public/"); 
+  $path = "http://xg.taixiaoyu.com";
 
   $db_location = "localhost";
   $db_username = "tai";
