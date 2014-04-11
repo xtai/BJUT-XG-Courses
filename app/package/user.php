@@ -42,11 +42,10 @@
     }
     public function change_password($new_password){
       if($this->login_state()){
-        $this->login_data();
-        $new_password = $this->md5_password($new_password . 'taixiaoyu');
+        $new_password = $this->md5_password($new_password);
         $datetime = date('Y-m-d H:i:s');
-        $this->MySQL->query("UPDATE ".$this->user['type']." SET pwd = '".$new_password."' WHERE id = '".$_SESSION['xg_id']."';");
-        $this->MySQL->query("UPDATE ".$this->user['type']." SET lastpwdchange = '".$datetime."' WHERE id = '".$_SESSION['xg_id']."';");
+        $this->MySQL->query("UPDATE ".$this->user_data('type')." SET pwd = '".$new_password."' WHERE id = '".$_SESSION['xg_id']."';");
+        $this->MySQL->query("UPDATE ".$this->user_data('type')." SET lastpwdchange = '".$datetime."' WHERE id = '".$_SESSION['xg_id']."';");
         return 1;
       }else{
         return 0;
