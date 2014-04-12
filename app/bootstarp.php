@@ -4,19 +4,8 @@
   * by Xiaoyu Tai @ Beijing, 2014.3
   */
 
+  //!IMPORTANT: see setting_example.php
   include_once "setting.php";
-  /**
-  * setting.php example:
-  * <?php
-  *   $include_path = "";        --> 'app' folder base path e.g. .:/var/www/xg/app
-  *   $path = "";                --> website base path e.g. xg.taixiaoyu.com
-  *
-  *   $db_location = "server";   --> database settings
-  *   $db_username = "username"; ^
-  *   $db_password = "password"; ^
-  *   $db_database = "database"; ^
-  * ?>
-  */
   ini_set("include_path", $include_path); 
 
   //Import All Classes
