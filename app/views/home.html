@@ -13,21 +13,11 @@
 </div>
 <div class="container" id="top_div" data-spy="affix" data-offset-top="111">
   <div class="row hidden-xs hidden-sm">
-    <!--div class="col-sm-3">
-      <div class="content header_1">
-        <div class="row_header">
-          <h3>必修</h3>
-          <h4>需要 32 学分, 已选 32 学分</h4>
-          <h4><span class="label label-success"><span class="glyphicon glyphicon-ok"></span> 已完成教学计划</span></h4>
-          <hr />
-        </div>
-      </div>
-    </div-->
     <div class="col-sm-4">
       <div class="content header_2">
         <div class="row_header">
           <h3>学科基础选修课</h3>
-          <h4>需要 9 学分, 已选 <span id="s_2_t">32</span> 学分</h4>
+          <h4>需要 <?php echo $this->Subject->plans_points($_SESSION['xg_major'], "1"); ?> 学分, 已选 <span id="s_2_t">32</span> 学分</h4>
           <h4 id="l_2_t"><span class="label label-danger"><span class="glyphicon glyphicon-remove"></span> 未完成教学计划</span></h4>
           <hr />
         </div>
@@ -37,7 +27,7 @@
       <div class="content header_3">
         <div class="row_header">
           <h3>专业任选课</h3>
-          <h4>需要 8 学分, 已选 <span id="s_3_t">32</span> 学分</h4>
+          <h4>需要 <?php echo $this->Subject->plans_points($_SESSION['xg_major'], "2"); ?> 学分, 已选 <span id="s_3_t">32</span> 学分</h4>
           <h4 id="l_3_t"><span class="label label-danger"><span class="glyphicon glyphicon-remove"></span> 未完成教学计划</span></h4>
           <hr />
         </div>
@@ -47,7 +37,7 @@
       <div class="content header_4"> 
         <div class="row_header">
           <h3>专业限选课</h3>
-          <h4>需要 12 学分, 已选 <span id="s_4_t">32</span> 学分</h4>
+          <h4>需要 <?php echo $this->Subject->plans_points($_SESSION['xg_major'], "3"); ?> 学分, 已选 <span id="s_4_t">32</span> 学分</h4>
           <h4 id="l_4_t"><span class="label label-danger"><span class="glyphicon glyphicon-remove"></span> 未完成教学计划</span></h4>
           <hr />
         </div>
@@ -56,32 +46,11 @@
   </div>
 </div>
 <div class="row">
-  <!--div class="col-sm-3">
-    <div class="content header_1">
-      <div class="row_header">
-        <h3>必修</h3>
-        <h4>需要 32 学分, 已选 32 学分</h4>
-        <h4><span class="label label-success"><span class="glyphicon glyphicon-ok"></span> 已完成教学计划</span></h4>
-        <hr />
-      </div>
-      <h4>大三上</h4>
-      <?php $this->Subject->cards(5, "必修", "all"); ?>
-      <hr />
-      <h4>大三下</h4>
-      <?php $this->Subject->cards(6, "必修", "all"); ?>
-      <hr />
-      <h4>大四上</h4>
-      <?php $this->Subject->cards(7, "必修", "all"); ?>
-      <hr />
-      <h4>大四下</h4>
-      <?php $this->Subject->cards(8, "必修", "all"); ?>
-    </div>
-  </div-->
   <div class="col-sm-4">
     <div class="content header_2">
       <div class="row_header">
         <h3>学科基础选修课</h3>
-        <h4>需要 9 学分, 已选 <span id="s_2">32</span> 学分</h4>
+        <h4>需要 <?php echo $this->Subject->plans_points($_SESSION['xg_major'], "1"); ?> 学分, 已选 <span id="s_2">32</span> 学分</h4>
         <h4 id="l_2"><span class="label label-danger"><span class="glyphicon glyphicon-remove"></span> 未完成教学计划</span></h4>
         <hr />
       </div>
@@ -100,7 +69,7 @@
     <div class="content header_3">
       <div class="row_header">
         <h3>专业任选课</h3>
-        <h4>需要 8 学分, 已选 <span id="s_3">32</span> 学分</h4>
+        <h4>需要 <?php echo $this->Subject->plans_points($_SESSION['xg_major'], "2"); ?> 学分, 已选 <span id="s_3">32</span> 学分</h4>
         <h4 id="l_3"><span class="label label-danger"><span class="glyphicon glyphicon-remove"></span> 未完成教学计划</span></h4>
         <hr />
       </div>
@@ -119,7 +88,7 @@
     <div class="content header_4">
       <div class="row_header">
         <h3>专业限选课</h3>
-        <h4>需要 12 学分, 已选 <span id="s_4">32</span> 学分</h4>
+        <h4>需要 <?php echo $this->Subject->plans_points($_SESSION['xg_major'], "3"); ?> 学分, 已选 <span id="s_4">32</span> 学分</h4>
         <h4 id="l_4"><span class="label label-danger"><span class="glyphicon glyphicon-remove"></span> 未完成教学计划</span></h4>
         <hr />
       </div>
@@ -135,6 +104,8 @@
     </div>
   </div>
 </div>
-
+<script type="text/javascript">
+  var r = new Array(0, <?php echo $this->Subject->plans_points($_SESSION['xg_major'], "0"); ?>, <?php echo $this->Subject->plans_points($_SESSION['xg_major'], "1"); ?>,<?php echo $this->Subject->plans_points($_SESSION['xg_major'], "2"); ?>,<?php echo $this->Subject->plans_points($_SESSION['xg_major'], "3"); ?>);
+</script>
 <link href="<?php echo $this->path; ?>/assets/css/home.css" rel="stylesheet">
 <script src="<?php echo $this->path; ?>/assets/js/home.js" type="text/javascript"></script>

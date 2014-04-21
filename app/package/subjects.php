@@ -10,17 +10,29 @@
   * . enrollment_list()
   * . enrollment_list_class()
   */
-  class Subject extends MySQL{
+  class Subject{
     private $path;
     private $temp;
     private $major;
     private $MySQL;
-    public function __construct($MySQL, $path){
+    private $User;
+    public function __construct($MySQL, $User, $path){
       $this->MySQL = $MySQL;
+      $this->User = $User;
       $this->path  = $path;
     }
+    public function plans_points($major, $type){
+      $result = $this->MySQL->query("SELECT type".$type." FROM plans where major = '".$major."'");
+      $row_num  = mysql_num_rows($result);
+      if($row_num == 0){
+        return 0;
+      }else{
+        $row = mysql_fetch_array($result);
+        return $row[0];
+      }
+    }
     public function cards($time, $type, $option){
-      $this->major = substr($_SESSION['xg_id'],0,5);
+      $this->major = $_SESSION['xg_major'];
       if($option == "all"){
         $mine   = false;
         $result = $this->MySQL->query("SELECT * FROM subjects_detail WHERE major ='".$this->major."' AND time = '".$time."' AND type = '".$type."' ORDER BY id;");
@@ -70,7 +82,8 @@
     //for AJAX dealing with database
     public function ajax_change($id, $option){
       if($option == 'insert'){
-        $this->MySQL->query("INSERT INTO selects (`uid`, `sid`) VALUES ('".$_SESSION['xg_id']."', '".$id."');");
+        $datetime = date('Y-m-d H:i:s');
+        $this->MySQL->query("INSERT INTO selects (`uid`, `sid`, `lastselect`) VALUES ('".$_SESSION['xg_id']."', '".$id."', '".$datetime."');");
         echo $this->have_course($id);
       }elseif($option == 'delete'){
         $this->MySQL->query("DELETE FROM selects WHERE `uid`='$_SESSION[xg_id]' and`sid`='$id';");
@@ -92,13 +105,7 @@
       }
       echo "\" id=\"".$id."\" onclick=\"change_val(".$id.",".$type.",".$point.")\" ><p style=\"font-weight:600; font-size: 18px; color:#D55;\">
       <a id=\"title".$id."\" onclick=\"avoid_val(".$id.",".$type.",".$point.");\" href=\"".$this->path."/subject.php?i=".$id."\">".$name."</a></p>
-      <hr /><p style=\"text-align: right;\">";
-      if($type == 1){
-        echo "已选 51 人";
-      }else{
-        echo "已选 <span id=\"enroll_".$id."\">$enroll</span> 人";
-      }
-      echo " | ".$exam." | ".$point." 学分 | ";
+      <hr /><p style=\"text-align: right;\">已选 <span id=\"enroll_".$id."\">$enroll</span> 人 | ".$exam." | ".$point." 学分 | ";
       if($mine){
         echo "<strong>已选</strong>";
       }else{
@@ -131,19 +138,15 @@
         case "8": echo "大四下"; break;
         default:  echo "WTF?";  break;
       }
-      echo "</h4><h4>考试形式: ".$course['exam']."</h4><h4>开课学院: ".$course['school']."</h4><h4>已选人数: ";
-      if($type_num == 1){
-        echo "51";
-      }else{
-        echo $course['enroll'];
-      }
-      echo "人</h4>";
+      echo "</h4><h4>考试形式: ".$course['exam']."</h4><h4>开课学院: ".$course['school']."</h4><h4>已选人数: ".$course['enroll']."人</h4>";
       return 1;
     }
     private function enrollment_list($course){
       echo "<div class=\"row\">";
-      $this->enrollment_list_class($course, "111101");
-      $this->enrollment_list_class($course, "111102");
+      $row = $this->User->classes_list($_SESSION['xg_major']);
+      foreach ($row as $classes){
+        $this->enrollment_list_class($course, $classes);
+      }
       echo "</div>";
       return 1;
     }

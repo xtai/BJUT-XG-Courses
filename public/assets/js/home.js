@@ -1,5 +1,4 @@
 var s = new Array();
-var r = new Array(0,32,9,8,12);
 var d = new Array(0,0,0,0,0);
 var n = 0;
 var t = 0;

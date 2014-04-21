@@ -36,11 +36,7 @@
         include_once "views/footer.html";
       }elseif($this->User->login_state()){
         if($this->name == "login" || $this->name == "admin_login"){
-          if($this->User->user_data("type") == "users"){
-            header("Location: ".$this->path."/home.php");
-          }elseif($this->User->user_data("type") == "admins"){
-            header("Location: ".$this->path."/admin/home.php");
-          }
+          header("Location: ".$this->path."/home.php");
         }else{
           include_once "views/header.html";
           if($this->User->user_data("type") == "users"){
