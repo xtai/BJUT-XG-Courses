@@ -11,11 +11,13 @@
     private $User;
     private $Subject;
     private $MySQL;
-    public function __construct($MySQL, $User, $Subject, $path){
+    private $Admin;
+    public function __construct($MySQL, $User, $Subject, $Admin, $path){
       ini_set("date.timezone","Asia/Hong_Kong");
       $this->MySQL   = $MySQL;
       $this->User    = $User;
       $this->Subject = $Subject;
+      $this->Admin   = $Admin;
       $this->path    = $path;
     }
     public function path($path){

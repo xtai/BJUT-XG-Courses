@@ -1,0 +1,28 @@
+.table{
+  background-color: rgba(255,255,255,0.9);
+}
+.table tr:hover{
+  cursor: pointer;
+}
+
+.pagin{
+  text-align: center;
+}
+.pagination>li>a,
+.pagination>li>span{
+  color: #D55;
+}
+.pagination>li>a:hover,
+.pagination>li>span:hover{
+  color: #D55;
+}
+
+.pagination>.active>a,
+.pagination>.active>span,
+.pagination>.active>a:hover,
+.pagination>.active>span:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span:focus{
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
