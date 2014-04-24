@@ -64,5 +64,3 @@ $M->init("localhost", "tai", "12345678", "xg_courses");
 
 $MM = new M();
 $MM->a();*/
-
-

@@ -1,0 +1,25 @@
+h2{
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+.content p{
+  text-align: center;
+  font-size: 16px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+.has-done{
+  color: #5cb85c;
+  border-color: #5cb85c;
+}
+.has-done h1{
+  color: #5cb85c;
+}
+.content{
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+}
+.content:hover{
+  background-color: rgba(255,255,255,0.8);
+}

@@ -25,7 +25,7 @@ class Objects{
     return null;
   }
 
-  // Using ReflectionClass to check class variables.
+  // Using \ReflectionClass to check class variables.
   private function check($argument){
     $reflection = new \ReflectionClass($this);
     $vars = $reflection->getProperties();
