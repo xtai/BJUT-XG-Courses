@@ -44,7 +44,7 @@
       }
     }
     public function change_password($new_password){
-      if($this->login_state()){
+      if($this->login_state() && is_legal($new_password)){
         $this->change_password_private($new_password, $this->user_data('type'), $_SESSION['xg_id']);
         return 1;
       }else{
