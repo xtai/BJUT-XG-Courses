@@ -1,6 +1,6 @@
 <?php
-  $include_path     = ".://Users/taixiaoyu/Sites/xg/app/";
-  $path             = "http://xg.dev";
+  $path             = "http://".$_SERVER['SERVER_NAME'];
+  $base_file_path   = __DIR__;
   $db_location      = "localhost";
   $db_username      = "tai";
   $db_password      = "12345678";

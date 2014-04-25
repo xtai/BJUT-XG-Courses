@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Class Objects -> DBA tables set() & get()
+* Class Objects -> DBA tables set(), get(), getAll()
 *
 * author: Xiaoyu Tai @ Beijing, 2014.4.24
 *
@@ -10,27 +10,36 @@
 namespace Base;
 
 class Objects{
-  public function set($argument, $value){
-    if($this->check($argument)){
-      $this->$argument = $value;
+  public function set($variable, $value){
+    if($this->check($variable)){
+      $this->$variable = $value;
       return 1;
     }
     return null;
   }
 
-  public function get($argument){
-    if($this->check($argument)){
-      return $this->$argument;
+  public function get($variable){
+    if($this->check($variable)){
+      return $this->$variable;
     }
     return null;
   }
-
-  // Using \ReflectionClass to check class variables.
-  private function check($argument){
+  
+  public function getAll(){
+    $result = array();
     $reflection = new \ReflectionClass($this);
     $vars = $reflection->getProperties();
     foreach($vars as $var){
-      if($argument == $var->getName()){
+      $result[$var->getName()] = $this->get($var->getName());
+    }
+    return $result;
+  }
+
+  protected function check($variable){
+    $reflection = new \ReflectionClass($this);
+    $vars = $reflection->getProperties();
+    foreach($vars as $var){
+      if($variable == $var->getName()){
         return true;
       }
     }

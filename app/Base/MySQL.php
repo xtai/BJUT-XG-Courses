@@ -15,7 +15,7 @@ class MySQL{
   public function __construct(){
     return null;
   }
-  public function init($location, $username, $password, $database){
+  public static function init($location, $username, $password, $database){
     self::$location = $location;
     self::$username = $username;
     self::$password = $password;
@@ -36,7 +36,6 @@ class MySQL{
       } 
       mysql_query("SET NAMES UTF8;");
       mysql_select_db(self::$database, self::$con);
-      date_default_timezone_set("Asia/Hong_Kong");
       return 1;
     }else{
       return 0;

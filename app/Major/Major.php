@@ -24,7 +24,3 @@ class Major extends \Base\Objects{
 		return null;
 	}
 }
-/*
-$S = new Major();
-$S->set("major_id", "123");
-echo $S->get("major_id") . "\n";*/

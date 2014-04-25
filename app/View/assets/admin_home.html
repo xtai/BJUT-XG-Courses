@@ -1,8 +1,13 @@
+<?php
+/**
+* Data require: data["basic"], data["lastlogin"]
+*/
+?>
 <div class="row">
   <div class="col-sm-4">
     <div class="content">
       <div class="row_header">
-        <h1><?php echo $this->Admin->show_data("users"); ?></h1>
+        <h1><?php echo $this->data["basic"]["user"]; ?></h1>
         <h3><span class="glyphicon glyphicon-user"></span> 学生</h3>
         <br />
       </div>
@@ -11,7 +16,7 @@
   <div class="col-sm-4">
     <div class="content">
       <div class="row_header">
-        <h1><?php echo $this->Admin->show_data("majors"); ?></h1>
+        <h1><?php echo $this->data["basic"]["major"]; ?></h1>
         <h3><span class="glyphicon glyphicon-book"></span> 专业</h3>
         <br />
       </div>
@@ -20,7 +25,7 @@
   <div class="col-sm-4">
     <div class="content">
       <div class="row_header">
-        <h1><?php echo $this->Admin->show_data("classes"); ?></h1>
+        <h1><?php echo $this->data["basic"]["class"]; ?></h1>
         <h3><span class="glyphicon glyphicon-home"></span> 班级</h3>
         <br />
       </div>
@@ -29,7 +34,7 @@
   <div class="col-sm-4">
     <div class="content">
       <div class="row_header">
-        <h1><?php echo $this->Admin->show_data("subjects"); ?></h1>
+        <h1><?php echo $this->data["basic"]["subject"]; ?></h1>
         <h3><span class="glyphicon glyphicon-list-alt"></span> 课程</h3>
         <br />
       </div>
@@ -38,7 +43,7 @@
   <div class="col-sm-4">
     <div class="content">
       <div class="row_header">
-        <h1><?php echo $this->Admin->show_data("selects"); ?></h1>
+        <h1><?php echo $this->data["basic"]["select"]; ?></h1>
         <h3><span class="glyphicon glyphicon-ok"></span> 选课</h3>
         <br />
       </div>
@@ -47,7 +52,7 @@
   <div class="col-sm-4">
     <div class="content">
       <div class="row_header">
-        <h1><?php echo $this->Admin->show_data("admins"); ?></h1>
+        <h1><?php echo $this->data["basic"]["admin"]; ?></h1>
         <h3><span class="glyphicon glyphicon-star"></span> 管理员</h3>
         <br />
       </div>
@@ -60,7 +65,11 @@
         <hr />
       </div>
       <div class="admin_list">
-        <?php $this->Admin->last_login(6); ?>
+<?php
+  foreach($this->data["lastlogin"] as $value){
+    echo "<p><a href=\"".$this->path."/admin/user/".$value["user_id"]."\">".$value['user_name']."</a><span class=\"pull-right\">".$value['user_lastlogin']."</span></p>";
+  }
+?>
       </div>
     </div>
   </div>
@@ -72,7 +81,7 @@
       </div>
       <div class="admin_list">
         <p>网站地址<span class="pull-right"><?php global $path; echo $path; ?>/</span></p>
-        <p>文件地址<span class="pull-right"><?php global $include_path ; echo $include_path ; ?></span></p>
+        <p>文件地址<span class="pull-right"><?php global $base_file_path; echo $base_file_path; ?>/</span></p>
         <p>数据库<span class="pull-right"><?php global $db_database; echo $db_database; ?></span></p>
         <p>数据库地址<span class="pull-right"><?php global $db_location; echo $db_location; ?></span></p>
         <p>数据库用户<span class="pull-right"><?php global $db_username ; echo $db_username ; ?></span></p>
@@ -82,4 +91,4 @@
   </div>
 </div>
 
-<link href="<?php echo $this->path; ?>/assets/css/home.css" rel="stylesheet">
+<link href="/assets/css/home.css" rel="stylesheet">

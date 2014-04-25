@@ -1,17 +1,15 @@
-<form action="<?php echo $this->path; ?>/action/login.php" method="POST">
+<form action="<?php echo $this->path; ?>/login" method="POST">
   <h1 class="text-center"><span class="glyphicon glyphicon-send"></span></h1>
   <h2 class="text-center title2">选课指南</h2>
   <br />
   <input type="text" name="username" class="form-control" placeholder="学号" autocomplete="off" autofocus>
   <input type="password" name="password" class="form-control" placeholder="密码 默认是学号！" autocomplete="off">
-  <input type="text" name="type" style="display: none;" value="users"/>
   <input type="submit" name="submit" class="btn btn-danger btn-block" value="登录"></input>
   <br />
   <p class="text-center" style="color: #AAA; font-size: 13px;">支持 Chrome, Firefox, Opera 和 Safari 浏览器</p>
   <hr />
   <p class="text-center" style="color: #DDD;">Code &amp; Design by <a href="http://taixiaoyu.com">Xiaoyu Tai</a><br />Copyright © 2014</p>
 </form>
-
 <link href="<?php echo $this->path; ?>/assets/css/login.css" rel="stylesheet">
 <script type="text/javascript">
   $(document).ready(function(){
@@ -30,7 +28,7 @@
       type: "error",
       hideAfter: 10,
       showCloseButton: true,
-      message: "<br><br><br><a href=\"./admin/\" style=\"font-size: 150px;\"><span class=\"glyphicon glyphicon-star\"></span></a><br><br><br>"
+      message: "<br><br><br><a href=\"/admin/login/\" style=\"font-size: 150px;\"><span class=\"glyphicon glyphicon-star\"></span></a><br><br><br>"
     });
   }
   function wrong_pwd(){
@@ -42,13 +40,3 @@
     });
   }
 </script>
-<?php
-  if(isset($_SESSION['xg_pwd'])){
-    unset($_SESSION['xg_pwd']);
-?>
-<script type="text/javascript">
-  wrong_pwd();
-</script>
-<?php
-  }
-?>

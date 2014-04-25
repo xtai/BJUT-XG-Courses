@@ -18,6 +18,7 @@ class Admin extends \Base\Objects{
 	protected $user_lastlogin;
 	protected $user_logintimes;
 	protected $user_lastpwdchange;
+
 	public function __construct(){
 		return null;
 	}

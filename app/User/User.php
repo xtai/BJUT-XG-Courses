@@ -21,7 +21,7 @@ class User extends \Base\Objects{
 	protected $user_logintimes;
 	protected $user_lastpwdchange;
 
-  protected $subject_selected_list;
+  protected $selected_list;
 
 	public function __construct(){
 		return null;

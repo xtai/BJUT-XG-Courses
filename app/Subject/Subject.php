@@ -21,7 +21,9 @@ class Subject extends \Base\Objects{
   protected $subject_examtype;
   protected $major_id;
 
-  protected $user_enrolled_list;
+  protected $subject_enroll;
+
+  protected $enrolled_list;
 
 	public function __construct(){
 		return null;
