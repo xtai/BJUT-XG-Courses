@@ -35,8 +35,29 @@ RewriteRule ^ index.php [L]
 ====================================
 Nginx Sever Example Here
 ------------------------------------
-
-Pending!
-
+server {
+  listen 80;
+  server_name www.abc.com;
+  root    .../xg/public;
+  index   index.html index.php;
+  if (!-f $request_filename){
+    set $rule_0 1$rule_0;
+  }
+  if (!-d $request_filename){
+    set $rule_0 2$rule_0;
+  }
+  if ($rule_0 = "21"){
+    rewrite /.* /index.php last;
+  }
+  location / {
+    index index.php index.html index.htm;
+  }
+  location ~ .php$ {
+    fastcgi_pass 127.0.0.1:9000;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+  }
+}
 ====================================
 */
