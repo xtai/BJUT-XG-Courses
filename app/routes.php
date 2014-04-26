@@ -166,8 +166,8 @@ $router->get('/user/(\w*)', function($user_id){
 * [/admin/.*]
 *   GET  - /admin/             Admin Page - 后台管理
 *   GET  - /admin/logout/      Logout --> unAuth
-*   GET  - /password/    Password - 修改密码
-*   POST - /password/    POST Method for Change Password
+*   GET  - /password/          Password - 修改密码
+*   POST - /password/          POST Method for Change Password
 * ====================================================================
 */
 $router->get("/admin/logout", function(){
