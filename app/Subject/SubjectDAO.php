@@ -1,17 +1,14 @@
 <?php
 /**
-*
 * Class SubjectDAO -> DB table subjects + user_subject
-*
 * Data Access Object
 *
-* author: Xiaoyu Tai @ Beijing, 2014.4.25
-*
+* @author     Xiaoyu Tai @ Beijing, 2014.4.24
+* @copyright  Copyright (c), 2014 Xiaoyu Tai
+* @license    MIT license (see /mit/)
 */
 
 namespace Subject;
-
-use Base\DAO;
 
 class SubjectDAO extends \Base\DAO{
 
@@ -92,5 +89,31 @@ class SubjectDAO extends \Base\DAO{
       default:
         return null;
     }
+  }
+  public function checkSubject($subject_id){
+    $result = \Base\MySQL::query("SELECT * FROM `subjects` WHERE `subject_id` = '".$subject_id."';");
+    return mysql_num_rows($result);
+  }
+  public function checkSelectSubject($user_id, $subject_id){
+    $result = \Base\MySQL::query("SELECT * FROM `user_subject` WHERE `user_id` = '".$user_id."' AND `subject_id` = '".$subject_id."';");
+    return mysql_num_rows($result);
+  }
+  public function selectSubject($user_id, $subject_id){
+    $datetime = date('Y-m-d H:i:s');
+    \Base\MySQL::query("INSERT INTO `user_subject` (`user_id`, `subject_id`, `lastchange`) VALUES ('".$user_id."', '".$subject_id."', '".$datetime."');");
+    return checkSelectSubject($user_id, $subject_id);
+  }
+  public function unSelectSubject($user_id, $subject_id){
+    \Base\MySQL::query("DELETE FROM `user_subject` WHERE `user_id` = '".$user_id."' AND `subject_id` = '".$subject_id."';");
+    return checkSelectSubject($user_id, $subject_id);
+  }
+  public function getEnrollListByID($subject_id){
+    $data = array();
+    $result = \Base\MySQL::query("SELECT `user_id` FROM `selects_detail` WHERE `subject_id` = '".$subject_id."';");
+    while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+      $name = mysql_fetch_array(\Base\MySQL::query("SELECT `class_id`, `user_name` FROM `users` WHERE `user_id` = '".$row["user_id"]."';"), MYSQL_ASSOC);
+      $data[$name["class_id"]][$row["user_id"]] = $name["user_name"];
+    }
+    return $data;
   }
 }

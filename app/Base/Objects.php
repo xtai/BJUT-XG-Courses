@@ -1,10 +1,10 @@
 <?php
 /**
-*
 * Class Objects -> DBA tables set(), get(), getAll()
 *
-* author: Xiaoyu Tai @ Beijing, 2014.4.24
-*
+* @author     Xiaoyu Tai @ Beijing, 2014.4.24
+* @copyright  Copyright (c), 2014 Xiaoyu Tai
+* @license    MIT license (see /mit/)
 */
 
 namespace Base;

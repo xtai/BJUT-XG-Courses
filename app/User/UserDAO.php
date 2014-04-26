@@ -1,17 +1,14 @@
 <?php
 /**
-*
 * Class UserDAO -> DB table users + user_subject + admins
-*
 * Data Access Object
 *
-* author: Xiaoyu Tai @ Beijing, 2014.4.25
-*
+* @author     Xiaoyu Tai @ Beijing, 2014.4.25
+* @copyright  Copyright (c), 2014 Xiaoyu Tai
+* @license    MIT license (see /mit/)
 */
 
 namespace User;
-
-use Base\DAO;
 
 class UserDAO extends \Base\DAO{
 
@@ -22,18 +19,20 @@ class UserDAO extends \Base\DAO{
   public function getObjectByID($user_id){
     $User = new User();
     $result = \Base\MySQL::query("SELECT * FROM users WHERE user_id = '". $user_id ."';");
-    if(mysql_num_rows($result) == 1){
+    if(mysql_num_rows($result)){
       $result = mysql_fetch_array($result, MYSQL_ASSOC);
       foreach ($result as $key => $value) {
         $User->set($key, $value);
       }
-      $result = \Base\MySQL::query("SELECT * FROM selects_detail WHERE user_id = '". $user_id ."';");
-      $data = array();
-      $i = 0;
-      while($data[$i] = mysql_fetch_array($result, MYSQL_ASSOC)){
-        $i++;
+      $result = \Base\MySQL::query("SELECT * FROM `user_subject` WHERE `user_id` = '". $user_id ."';");
+      if(mysql_num_rows($result)){
+        $data = array();
+        $i = 0;
+        while($data[$i] = mysql_fetch_array($result, MYSQL_ASSOC)){
+          $i++;
+        }
+        $User->set("selected_list", $data);
       }
-      $User->set("selected_list", $data);
       return $User;
     }else{
       trigger_error("User(".$user_id.") doesn't exists in Database!");
@@ -43,8 +42,7 @@ class UserDAO extends \Base\DAO{
 
   public function insertObject($User){
     $data = $User->getAll();
-    $result = \Base\MySQL::query("SELECT * FROM users WHERE user_id = '". $data["user_id"] ."';");
-    if(mysql_num_rows($result) == 0){
+    if($this->checkUser($data["user_id"])){
       if($data["user_lastlogin"] == ""){
         $user_lastlogin = "NULL";
       }else{
@@ -65,8 +63,7 @@ class UserDAO extends \Base\DAO{
 
   public function updateObject($User){
     $data = $User->getAll();
-    $result = \Base\MySQL::query("SELECT * FROM users WHERE user_id = '". $data["user_id"] ."';");
-    if(mysql_num_rows($result) == 1){
+    if($this->checkUser($data["user_id"])){
       if($data["user_lastlogin"] == ""){
         $user_lastlogin = "NULL";
       }else{
@@ -87,8 +84,7 @@ class UserDAO extends \Base\DAO{
 
   public function deleteObject($User){
     $data = $User->getAll();
-    $result = \Base\MySQL::query("SELECT * FROM users WHERE user_id = '". $data["user_id"] ."';");
-    if(mysql_num_rows($result) == 1){
+    if($this->checkUser($data["user_id"])){
       \Base\MySQL::query("DELETE FROM `users` WHERE `user_id`='".$data["user_id"]."';");
       return 1;
     }else{
@@ -98,8 +94,7 @@ class UserDAO extends \Base\DAO{
   }
 
   public function deleteObjectByID($user_id){
-    $result = \Base\MySQL::query("SELECT * FROM users WHERE user_id = '". $user_id ."';");
-    if(mysql_num_rows($result) == 1){
+    if($this->checkUser($user_id)){
       \Base\MySQL::query("DELETE FROM `users` WHERE `user_id`='".$user_id."';");
       return 1;
     }else{
@@ -133,15 +128,60 @@ class UserDAO extends \Base\DAO{
     $data = array();
     $i = 0;
     $User = new User();
-    $result = \Base\MySQL::query("SELECT user_id FROM users ORDER BY user_lastlogin DESC LIMIT ".$limit.";");
-    while($row = mysql_fetch_array($result)){
-      $User = $this->getObjectByID($row["user_id"]);
-      $data[$i]["user_id"] = $User->get("user_id");
-      $data[$i]["user_name"] = $User->get("user_name");
-      $data[$i]["user_lastlogin"] = $User->get("user_lastlogin");
+    $result = \Base\MySQL::query("SELECT user_id, user_name, user_lastlogin FROM users ORDER BY user_lastlogin DESC LIMIT ".$limit.";");
+    while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+      $data[$i]["user_id"] = $row["user_id"];
+      $data[$i]["user_name"] = $row["user_name"];
+      $data[$i]["user_lastlogin"] = $row["user_lastlogin"];
       $i++;
     }
     return $data;
   }
-
+  public function newPassword($user_id, $new_password){
+    $datetime = date('Y-m-d H:i:s');
+    \Base\MySQL::query("UPDATE users SET user_password = '".$new_password."', user_lastpwdchange = '".$datetime."' WHERE user_id = '".$user_id."';");
+    return 1;
+  }
+  public function getPointsByObject($User){
+    $user_id = $User->get("user_id");
+    $data = $this->getPointsByID($user_id);
+    $User->set("got_points", $data);
+    return $data;
+  }
+  public function getPointsByID($user_id){
+    $result = \Base\MySQL::query("SELECT * FROM users_detail WHERE user_id = '". $user_id ."';");
+    if(mysql_num_rows($result) == 1){
+      $data = mysql_fetch_array($result, MYSQL_ASSOC);
+      return $data;
+    }else{
+      trigger_error("User(".$user_id.") doesn't exists in Database!");
+      return null;
+    }
+  }
+  public function getSubjectsByUserID($user_id){
+    $data = array();
+    $i = 0;
+    $string = "SELECT `selects_detail`.`user_id` AS `user_id`,`subjects_detail`.* "
+            . "FROM selects_detail RIGHT JOIN subjects_detail ON "
+            . "(`selects_detail`.`subject_id` = `subjects_detail`.`subject_id` AND "
+            . "`user_id` = '". $user_id ."');";
+    $result = \Base\MySQL::query($string);
+    while($data[$i] = mysql_fetch_array($result, MYSQL_ASSOC)){
+      $i++;
+    }
+    return $data;
+  }
+  public function getSelectedSubjectsByUserID($user_id){
+    $data = array();
+    $i = 0;
+    $result = \Base\MySQL::query("SELECT * FROM selects_detail WHERE `user_id` = '". $user_id ."';");
+    while($data[$i] = mysql_fetch_array($result, MYSQL_ASSOC)){
+      $i++;
+    }
+    return $data;
+  }
+  public function checkUser($user_id){
+    $result = \Base\MySQL::query("SELECT * FROM users WHERE user_id = '". $user_id ."';");
+    return mysql_num_rows($result);
+  }
 }

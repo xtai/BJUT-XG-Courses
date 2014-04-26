@@ -11,6 +11,7 @@ $(document).ready(function()
       $('#backt').slideUp('fast');
     }
   });
+  $('._t').html($('#_t').html());
 });
 Messenger.options = {
   extraClasses: 'messenger-fixed messenger-on-bottom',

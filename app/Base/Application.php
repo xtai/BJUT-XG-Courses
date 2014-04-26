@@ -1,7 +1,10 @@
 <?php
 /**
-* MySQL Class
-* code by Xiaoyu Tai, 2014-3-22 @Beijing.
+* Application Class
+*
+* @author     Xiaoyu Tai @ Beijing, 2014.4.26
+* @copyright  Copyright (c), 2014 Xiaoyu Tai
+* @license    MIT license (see /mit/)
 */
 
 namespace Base;

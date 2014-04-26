@@ -1,15 +1,13 @@
 <?php
 /**
-*
 * Class Admin -> DB table admins
 *
-* author: Xiaoyu Tai @ Beijing, 2014.4.24
-*
+* @author     Xiaoyu Tai @ Beijing, 2014.4.24
+* @copyright  Copyright (c), 2014 Xiaoyu Tai
+* @license    MIT license (see /mit/)
 */
 
 namespace User;
-
-use Base\Objects;
 
 class Admin extends \Base\Objects{
 	protected $user_id;

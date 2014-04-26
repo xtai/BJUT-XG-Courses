@@ -1,17 +1,14 @@
 <?php
 /**
-*
 * Class AdminDAO -> DB table admins
-*
 * Data Access Object
 *
-* author: Xiaoyu Tai @ Beijing, 2014.4.25
-*
+* @author     Xiaoyu Tai @ Beijing, 2014.4.25
+* @copyright  Copyright (c), 2014 Xiaoyu Tai
+* @license    MIT license (see /mit/)
 */
 
 namespace User;
-
-use Base\DAO;
 
 class AdminDAO extends \Base\DAO{
 
@@ -118,5 +115,10 @@ class AdminDAO extends \Base\DAO{
       default:
         return null;
     }
+  }
+  public function newPassword($user_id, $new_password){
+    $datetime = date('Y-m-d H:i:s');
+    \Base\MySQL::query("UPDATE admins SET user_password = '".$new_password."', user_lastpwdchange = '".$datetime."' WHERE user_id = '".$user_id."';");
+    return 1;
   }
 }

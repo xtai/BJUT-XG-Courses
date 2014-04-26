@@ -1,12 +1,11 @@
 <?php
 /**
-*
 * Class MoudleAdmin
-*
 * Moudle for all Admin's event
 *
-* author: Xiaoyu Tai @ Beijing, 2014.4.25
-*
+* @author     Xiaoyu Tai @ Beijing, 2014.4.25
+* @copyright  Copyright (c), 2014 Xiaoyu Tai
+* @license    MIT license (see /mit/)
 */
 
 namespace Moudle;
@@ -18,7 +17,7 @@ class MoudleAdmin extends Moudle{
   }
 
   public function login($username, $password){
-    $password = self::md5_password($password);
+    $password = self::md5Password($password);
     $AdminDAO = new \User\AdminDAO();
     $Admin = $AdminDAO->login($username, $password);
     if($Admin != null){
@@ -36,15 +35,19 @@ class MoudleAdmin extends Moudle{
       return 0;
     }
   }
-
+  public function newPassword($new_password){
+    $new_password = self::md5Password($new_password);
+    $AdminDAO = new \User\AdminDAO();
+    return $AdminDAO->newPassword($_SESSION["xg_user_id"], $new_password);;
+  }
   public function getData($viewname){
-    $data       = array();
-    $UserDAO    = new \User\UserDAO();
-    $AdminDAO   = new \User\AdminDAO();
-    $MajorDAO   = new \Major\MajorDAO();
-    $SubjectDAO = new \Subject\SubjectDAO();
+    $data = array();
     switch($viewname){
       case "admin_home":
+        $UserDAO    = new \User\UserDAO();
+        $AdminDAO   = new \User\AdminDAO();
+        $MajorDAO   = new \Major\MajorDAO();
+        $SubjectDAO = new \Subject\SubjectDAO();
         $data["basic"]["user"]    = $UserDAO->totalNum("user");
         $data["basic"]["class"]   = $UserDAO->totalNum("class");
         $data["basic"]["admin"]   = $AdminDAO->totalNum("admin");

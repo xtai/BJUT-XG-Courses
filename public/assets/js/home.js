@@ -144,7 +144,7 @@ function avoid_val($x,$y,$z){
 function change_ajax($x, $y)
 {
   $title = $("#title" + $x).html();
-  $.post('./action/change.php', {sid: $x, option: $y}, function(data)
+  $.post('./select/', {sid: $x, option: $y}, function(data)
   {
     if(data)
     {

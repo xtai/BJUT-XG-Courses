@@ -1,10 +1,10 @@
 <?php
 /**
-*
 * Class DAO -> DBA get, delete, insert, update objects
 *
-* author: Xiaoyu Tai @ Beijing, 2014.4.25
-*
+* @author     Xiaoyu Tai @ Beijing, 2014.4.26
+* @copyright  Copyright (c), 2014 Xiaoyu Tai
+* @license    MIT license (see /mit/)
 */
 
 namespace Base;

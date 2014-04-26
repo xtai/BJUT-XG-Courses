@@ -67,7 +67,7 @@
       <div class="admin_list">
 <?php
   foreach($this->data["lastlogin"] as $value){
-    echo "<p><a href=\"".$this->path."/admin/user/".$value["user_id"]."\">".$value['user_name']."</a><span class=\"pull-right\">".$value['user_lastlogin']."</span></p>";
+    echo "<p><a href=\"".$this->path."/admin/user/".$value["user_id"]."/\">".$value['user_name']."</a><span class=\"pull-right\">".$value['user_lastlogin']."</span></p>";
   }
 ?>
       </div>

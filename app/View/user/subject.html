@@ -1,0 +1,97 @@
+
+<h1><?php echo $this->data["subject"]["subject_name"]; ?></h1>
+<div class="row">
+  <div class="col-sm-6">
+    <br />
+    <h4>课程ID: <?php echo $this->data["subject"]["subject_id"]; ?></h4>
+    <h4>学分: <?php echo $this->data["subject"]["subject_point"]; ?></h4>
+    <h4>课程性质: <span class="type_<?php echo $this->data["subject"]["subject_type"]-2; ?>"><?php switch($this->data["subject"]["subject_type"]){
+  case "4": echo "学科基础选修课"; break;
+  case "5": echo "专业任选课"; break;  
+  case "6": echo "专业限选课"; break;
+  default:  echo "WTF?";  break;}?></span></h4>
+    <h4>开课时间: <?php switch($this->data["subject"]["subject_time"]){
+  case "5": echo "大三上"; break;
+  case "6": echo "大三下"; break;  
+  case "7": echo "大四上"; break;
+  case "8": echo "大四下"; break;
+  default:  echo "WTF?";  break;}?></h4>
+    <h4>考试形式: <?php echo $this->data["subject"]["subject_examtype"]; ?></h4>
+    <h4>开课学院: <?php echo $this->data["subject"]["subject_school"]; ?></h4>
+    <h4>已选人数: <?php echo $this->data["subject"]["subject_enroll"]; ?>人</h4>
+    <hr />
+    <h3>在这儿讨论一下</h3>
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+ var disqus_shortname = 'bjut-xg-courses'; // required: replace example with your forum shortname
+ (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+  </div>
+  <div class="col-sm-6">
+    <h3>都谁选了这门课 [<?php echo $this->data["subject"]["subject_enroll"]; ?>人] :</h3>
+    <div class="row">
+      <?php
+        foreach($this->data["class_list"] as $c_id){
+          if(isset($this->data["enroll_user"][$c_id])){
+            $c = count($this->data["enroll_user"][$c_id]);
+          }else{
+            $c = 0;
+          }
+          echo "<div class=\"col-sm-6\"><h4>". $c_id
+          ." [". $c ."人]</h4><table class=\"table table-striped table-bordered table-hover\"><thead>"
+          ."<tr><th>学号</th><th>姓名</th></tr></thead><tbody>";
+          foreach ($this->data["enroll_user"] as $class_id => $user_id_array) {
+            if($class_id == $c_id){
+              foreach($user_id_array as $user_id => $user_name) {
+                echo "<tr><td><a href=\"".$this->path."/user/".$user_id."/\">".$user_id."</a></td><td><a href=\"".$this->path."/user/".$user_id."/\">".$user_name."</a></td></tr>";
+              }
+            }
+          }
+          if(!$c){
+            echo "<tr><td colspan=\"2\">没人选</td></tr>";
+          }
+          echo "</tbody></table></div>";
+        }
+      ?>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+  table tr td a {
+    display:block;
+    color: #333;
+    height:100%;
+    width:100%;
+    padding: 8px!important;
+  }
+  table tr:hover > td > a{
+    color: #D55!important;
+  }
+  table tr td {
+    padding: 0!important;
+  }
+  h1{
+    color: #D55;
+    font-weight: 200;
+  }
+  .type_1{
+    color: #D33;
+  }
+  .type_2{
+    color: #DA1;
+  }
+  .type_3{
+    color: #1C5;
+  }
+  .type_4{
+    color: #13C;
+  }
+</style>

@@ -1,7 +1,12 @@
+<?php
+/**
+* Data require: data["plan_link"]
+*/
+?>
 <br /><br /><br />
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-    <a href="http://undergrad.bjut.edu.cn/UpLoadFiles/File/Default_File/xinxiguanliyuxinxixitong(6).pdf" class="plan-a">
+    <a href="<?php echo $this->data["plan_link"] ?>" class="plan-a">
       <div class="plan">
         <h1 style="text-align: center;">
           <br /><br /><br /><span class="plan-icon glyphicon glyphicon-download"></span><br/>下载教学计划<br /><br /><br /><br />
@@ -29,5 +34,3 @@
     background-color: rgba(255,255,255,0.75);
   }
 </style>
-
-

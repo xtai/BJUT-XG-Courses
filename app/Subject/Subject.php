@@ -1,15 +1,13 @@
 <?php
 /**
-*
 * Class Subject -> DB table subjects + user_subject
 *
-* author: Xiaoyu Tai @ Beijing, 2014.4.24
-*
+* @author     Xiaoyu Tai @ Beijing, 2014.4.24
+* @copyright  Copyright (c), 2014 Xiaoyu Tai
+* @license    MIT license (see /mit/)
 */
 
 namespace Subject;
-
-use Base\Objects;
 
 class Subject extends \Base\Objects{
   protected $subject_id;

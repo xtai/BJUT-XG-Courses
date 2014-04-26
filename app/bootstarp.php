@@ -1,7 +1,10 @@
 <?php
 /**
-* XG-Courses Bootstrap
-* by Xiaoyu Tai @ Beijing, 2014.4.25
+* Bootstrap
+*
+* @author     Xiaoyu Tai @ Beijing, 2014.4.25
+* @copyright  Copyright (c), 2014 Xiaoyu Tai
+* @license    MIT license (see /mit/)
 */
 include_once __DIR__ . "/config.php";
 include_once __DIR__ . "/Base/MySQL.php";
