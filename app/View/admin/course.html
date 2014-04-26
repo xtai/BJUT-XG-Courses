@@ -1,0 +1,82 @@
+<h2>课程管理</h2>
+<div class="row">
+<div class="col-sm-6">
+<form action="" method="GET">
+  <div class="input-group has-error">
+    <input type="text" class="form-control" name="q" placeholder="课程编号, 课程名称, 所属专业, 课程性质...">
+    <span class="input-group-btn">
+      <button class="btn btn-danger" type="submmit">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;搜索&nbsp;&nbsp;&nbsp;&nbsp;</button>
+    </span>
+  </div>
+</form>
+</div>
+<br class="visible-xs" />
+<div class="col-sm-6">
+  <div class="btn-group btn-group-justified">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> 添加课程</button>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-file"></span> 导入课程</button>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> 批量删除</button>
+    </div>
+  </div>
+</div>
+</div>
+<hr />
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>课程编号</th>
+      <th>课程名称</th>
+      <th class="hidden-xs hidden-sm">专业(ID)</th>
+      <th class="hidden-xs hidden-sm">学分</th>
+      <th class="hidden-xs">课程性质</th>
+      <th class="visible-lg">开课学院</th>
+      <th class="hidden-xs">选课人数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Mark</td>
+      <td class="hidden-xs hidden-sm">Otto</td>
+      <td class="hidden-xs hidden-sm">@mdo</td>
+      <td class="hidden-xs">Otto</td>
+      <td class="visible-lg">Otto</td>
+      <td class="hidden-xs">@mdo</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Jacob</td>
+      <td class="hidden-xs hidden-sm">Thornton</td>
+      <td class="hidden-xs hidden-sm">@fat</td>
+      <td class="hidden-xs">Otto</td>
+      <td class="visible-lg">Otto</td>
+      <td class="hidden-xs">@mdo</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Larry</td>
+      <td class="hidden-xs hidden-sm">the Bird</td>
+      <td class="hidden-xs hidden-sm">@twitter</td>
+      <td class="hidden-xs">Otto</td>
+      <td class="visible-lg">@mdo</td>
+      <td class="hidden-xs">Otto</td>
+    </tr>
+  </tbody>
+</table>
+<div class="pagin">
+  <ul class="pagination">
+    <li class="disabled"><a href="#">&laquo;</a></li>
+    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">&raquo;</a></li>
+  </ul>
+</div>
+<link href="<?php echo $this->path; ?>/assets/css/admin.css" rel="stylesheet">

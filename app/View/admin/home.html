@@ -1,0 +1,94 @@
+<?php
+/**
+* Data require: data["basic"], data["lastlogin"]
+*/
+?>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="content">
+      <div class="row_header">
+        <h1><?php echo $this->data["basic"]["user"]; ?></h1>
+        <h3><span class="glyphicon glyphicon-user"></span> 学生</h3>
+        <br />
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="content">
+      <div class="row_header">
+        <h1><?php echo $this->data["basic"]["major"]; ?></h1>
+        <h3><span class="glyphicon glyphicon-book"></span> 专业</h3>
+        <br />
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="content">
+      <div class="row_header">
+        <h1><?php echo $this->data["basic"]["class"]; ?></h1>
+        <h3><span class="glyphicon glyphicon-home"></span> 班级</h3>
+        <br />
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="content">
+      <div class="row_header">
+        <h1><?php echo $this->data["basic"]["subject"]; ?></h1>
+        <h3><span class="glyphicon glyphicon-list-alt"></span> 课程</h3>
+        <br />
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="content">
+      <div class="row_header">
+        <h1><?php echo $this->data["basic"]["select"]; ?></h1>
+        <h3><span class="glyphicon glyphicon-ok"></span> 选课</h3>
+        <br />
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="content">
+      <div class="row_header">
+        <h1><?php echo $this->data["basic"]["admin"]; ?></h1>
+        <h3><span class="glyphicon glyphicon-star"></span> 管理员</h3>
+        <br />
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="content">
+      <div class="row_header">
+        <h5>最后登录</h5>
+        <hr />
+      </div>
+      <div class="admin_list">
+<?php
+  foreach($this->data["lastlogin"] as $value){
+    echo "<p><a href=\"".$this->path."/admin/user/".$value["user_id"]."/\">".$value['user_name']."</a><span class=\"pull-right\">".$value['user_lastlogin']."</span></p>";
+  }
+?>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="content">
+      <div class="row_header">
+        <h5>系统信息</h5>
+        <hr />
+      </div>
+      <div class="admin_list">
+        <p>网站地址<span class="pull-right"><?php global $path; echo $path; ?>/</span></p>
+        <p>文件地址<span class="pull-right"><?php global $base_file_path; echo $base_file_path; ?>/</span></p>
+        <p>数据库<span class="pull-right"><?php global $db_database; echo $db_database; ?></span></p>
+        <p>数据库地址<span class="pull-right"><?php global $db_location; echo $db_location; ?></span></p>
+        <p>数据库用户<span class="pull-right"><?php global $db_username ; echo $db_username ; ?></span></p>
+        <p>GA Tracking Code<span class="pull-right"><?php global $google_analytics ; echo $google_analytics ; ?></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<link href="/assets/css/home.css" rel="stylesheet">

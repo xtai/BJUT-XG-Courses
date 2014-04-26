@@ -1,9 +1,29 @@
 BJUT-XG-Courses
 ===============
 
-Online Course Pre-selection System for BJUT, MIS, 2011-2015
+Online Course Pre-selection System for ~~BJUT, MIS, 2011-2015~~ every majors
 
 Available at http://xg.taixiaoyu.com/
+
+Copyright © 2014 Xiaoyu Tai. MIT License
+
+### 功能
+
+- 用户  
+1 根据教学计划所需学分提示选课  
+2 查看课程信息、选课人数、哪些人选  
+3 看同学都选了什么课  
+4 下载教学计划、留言  
+5 修改密码  
+
+
+- 管理员  
+1 查看系统基本状态  
+2 重置用户密码  
+3 导入用户、课程和专业  
+4 编辑或删除用户、课程和专业信息  
+5 修改密码  
+
 
 ---
 
@@ -25,5 +45,21 @@ Available at http://xg.taixiaoyu.com/
 
 UPDATE 2014-3-22:
 当做一个课的课设了，重构了好多代码然后继续做后台功能...
+
+---
+
+UPDATE 2014-4-21:
+下一步（下一个系统？）要实现路由功能功能！现在这个模式看起来真是弱爆了！
+
+---
+
+UPDATE 2014-4-26:
+终于又把这个系统给重构成了 MVC 架构....代码行数真是猛增！
+路由用了 [Van Damme 的 PHP Router](https://github.com/bramus/router) 非常之赞！
+以及面向对象经验提升不少！
+
+
+后台的功能还没有做_(:з」∠)_
+
 
 ---
