@@ -116,4 +116,24 @@ class SubjectDAO extends \Base\DAO{
     }
     return $data;
   }
+  public function getAllSubjects(){
+    $data = array();
+    $i = 0;
+    $result = \Base\MySQL::query("SELECT * FROM `subjects_detail`;");
+    while($data[$i] = mysql_fetch_array($result, MYSQL_ASSOC)){
+      $i++;
+    }
+    unset($data[$i--]);
+    return $data;
+  }
+  public function getSubjectsByPage($start, $num){
+    $data = array();
+    $i = 0;
+    $result = \Base\MySQL::query("SELECT * FROM `subjects_detail` LIMIT ".$start.",".$num.";");
+    while($data[$i] = mysql_fetch_array($result, MYSQL_ASSOC)){
+      $i++;
+    }
+    unset($data[$i--]);
+    return $data;
+  }
 }

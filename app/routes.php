@@ -207,12 +207,54 @@ $router->post("/admin/password", function(){
   header("location: /admin/logout/");
 });
 $router->get("/admin/user", function(){
-  $View = new \View\View("用户管理 &middot; 选课指南后台管理", "2", "2");
-  $View->show("admin_user");
+  if(isset($_GET["q"]) && preg_match("/\w*/", $_GET["q"])){
+    header("location: /admin/user/".$_GET["q"]);
+  }else{
+    $MoudleAdmin = new \Moudle\MoudleAdmin();
+    $total_page_num = $MoudleAdmin->getTotalPageNum("user");
+    $page_current_num = 1;
+    if(isset($_GET["p"])){
+      if(preg_match("/\d*/", $_GET["p"]) && ($_GET["p"] > 0) && (($total_page_num - $_GET["p"]) >= 0)){
+        $page_current_num = $_GET["p"];
+      }
+    }
+    $data = $MoudleAdmin->getUserMainData($page_current_num);
+    $View = new \View\View("用户管理 &middot; 选课指南后台管理", "2", "2");
+    $View->setData($data);
+    $View->show("admin_user");
+  }
+});
+$router->get('/admin/user/(\d*)', function($user_id){
+  $MoudleAdmin = new \Moudle\MoudleAdmin();
+  $data = $MoudleAdmin->getUserData($user_id);
+  $View = new \View\View($data["_title"]." &middot; 选课指南后台管理", "0", null);
+  $View->setData($data);
+  $View->show($data["viewname"]);
 });
 $router->get("/admin/subject", function(){
-  $View = new \View\View("课程管理 &middot; 选课指南后台管理", "2", "3");
-  $View->show("admin_subject");
+  if(isset($_GET["q"]) && preg_match("/\d*/", $_GET["q"])){
+    header("location: /admin/subject/".$_GET["q"]);
+  }else{
+    $MoudleAdmin = new \Moudle\MoudleAdmin();
+    $total_page_num = $MoudleAdmin->getTotalPageNum("subject");
+    $page_current_num = 1;
+    if(isset($_GET["p"])){
+      if(preg_match("/\d*/", $_GET["p"]) && ($_GET["p"] > 0) && (($total_page_num - $_GET["p"]) >= 0)){
+        $page_current_num = $_GET["p"];
+      }
+    }
+    $data = $MoudleAdmin->getSubjectMainData($page_current_num);
+    $View = new \View\View("课程管理 &middot; 选课指南后台管理", "2", "3");
+    $View->setData($data);
+    $View->show("admin_subject");
+  }
+});
+$router->get('/admin/subject/(\d*)', function($subject_id){
+  $MoudleAdmin = new \Moudle\MoudleAdmin();
+  $data = $MoudleAdmin->getSubjectData($subject_id);
+  $View = new \View\View($data["subject"]["subject_name"]." &middot; 选课指南后台管理", "0", null);
+  $View->setData($data);
+  $View->show($data["viewname"]);
 });
 $router->get("/admin/major", function(){
   $View = new \View\View("教学计划管理 &middot; 选课指南后台管理", "2", "4");

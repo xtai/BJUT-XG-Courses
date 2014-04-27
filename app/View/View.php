@@ -92,4 +92,31 @@ class View{
       return 1;
     }
   }
+  public function switchTime($time){
+    switch($time){
+      case "1": return "大一上";
+      case "2": return "大一下";
+      case "3": return "大二上";
+      case "4": return "大二下";
+      case "5": return "大三上";
+      case "6": return "大三下";
+      case "7": return "大四上";
+      case "8": return "大四下";
+      default:  return "WTF?"; 
+    }
+  }
+  public function switchType($type){
+    switch($type){
+      case "0": return "其他";
+      case "1": return "公共基础必修课";
+      case "2": return "学科基础必修课";
+      case "3": return "实践环节必修课";
+      case "4": return "学科基础选修课";
+      case "5": return "专业任选课";
+      case "6": return "专业限选课";
+      case "7": return "经管文法/自然科学/工程技术选修课";
+      case "8": return "通识教育选修课";
+      default:  return "WTF?";
+    }
+  }
 }

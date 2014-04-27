@@ -154,8 +154,11 @@ class UserDAO extends \Base\DAO{
       $data = mysql_fetch_array($result, MYSQL_ASSOC);
       return $data;
     }else{
-      trigger_error("User(".$user_id.") doesn't exists in Database!");
-      return null;
+      $data = array("user_id" => $user_id,
+            "point_type0" => 0,"point_type1" => 0,"point_type2" => 0,
+            "point_type3" => 0,"point_type4" => 0,"point_type5" => 0,
+            "point_type6" => 0,"point_type7" => 0,"point_type8" => 0);
+      return $data;
     }
   }
   public function getSubjectsByUserID($user_id){
@@ -183,5 +186,15 @@ class UserDAO extends \Base\DAO{
   public function checkUser($user_id){
     $result = \Base\MySQL::query("SELECT * FROM users WHERE user_id = '". $user_id ."';");
     return mysql_num_rows($result);
+  }
+  public function getUsersByPage($start, $num){
+    $data = array();
+    $i = 0;
+    $result = \Base\MySQL::query("SELECT * FROM `users` LIMIT ".$start.",".$num.";");
+    while($data[$i] = mysql_fetch_array($result, MYSQL_ASSOC)){
+      $i++;
+    }
+    unset($data[$i--]);
+    return $data;
   }
 }

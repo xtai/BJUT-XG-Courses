@@ -59,6 +59,10 @@ function update()
     $("#sign-div").addClass("glyphicon-ok");
     $("#alert-div").removeClass("alert-warning");
     $("#alert-div").addClass("alert-success");
+    $("#search-div").removeClass("has-warning");
+    $("#search-div").addClass("has-success");
+    $("#search-button").addClass("btn-success");
+    $("#search-button").removeClass("btn-warning");
     $("#p-div").html("已经完成教学计划了~");
   }
   $("#progress-bar").css("width", a+"%");
