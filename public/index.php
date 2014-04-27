@@ -14,4 +14,4 @@ include_once __DIR__ . '/../app/bootstarp.php';
 
 $App->run();
 
-echo "\n<b id=\"_t\" style=\"display: none;\">".round((microtime(true)-$runtime_start)*1000, 0)."</b>";
+echo "\n<b id=\"_t\" style=\"display: none;\">".round((microtime(true)-$runtime_start)*1000)."</b>";
