@@ -103,8 +103,9 @@ $router->post("/admin/login", function(){
 *   GET  - /message/     Message - 留言板
 *   GET  - /password/    Password - 修改密码
 *   POST - /password/    POST Method for Change Password
-*   GET  - /subject/.*   Subject info
-*   GET  - /user/.*      User info
+*   GET  - /subject/\d*  Subject info
+*   GET  - /user/\w*     User info
+*   GET  - /user/?q=\w*  Search User info
 * ====================================================================
 */
 $router->get("/", function(){
@@ -161,13 +162,28 @@ $router->get('/user/(\w*)', function($user_id){
   $View->setData($data);
   $View->show($data["viewname"]);
 });
+$router->get('/user/', function(){
+  if(isset($_GET["q"]) && preg_match("/\w*/", $_GET["q"])){
+    header("location: /user/".$_GET["q"]);
+  }else{
+    header("location: /mine/");
+  }
+});
 /**
 * ====For Auth Admis==================================================
 * [/admin/.*]
-*   GET  - /admin/             Admin Page - 后台管理
-*   GET  - /admin/logout/      Logout --> unAuth
-*   GET  - /password/          Password - 修改密码
-*   POST - /password/          POST Method for Change Password
+*   GET  - /admin/                 Admin Page - 后台管理
+*   GET  - /admin/logout/          Logout --> unAuth
+*   GET  - /admin/password/        Password - 修改密码
+*   POST - /admin/password/        POST Method for Change Password
+*   GET  - /admin/user/            User - 学生管理
+*   GET  - /admin/user/?q=.*       User Search
+*   GET  - /admin/user/\w*         User Info
+*   GET  - /admin/subject/         Subject - 课程管理
+*   GET  - /admin/subject/\d*      Subject Info
+*   GET  - /admin/major/           Major - 教学计划管理
+*   GET  - /admin/major/\d*        Major Info
+*   GET  - /admin/import/          Import - 导入向导
 * ====================================================================
 */
 $router->get("/admin/logout", function(){
@@ -176,13 +192,13 @@ $router->get("/admin/logout", function(){
   header("location: /admin/login/");
 });
 $router->get("/admin/", function(){
-  $View = new \View\View("后台管理 &middot; 选课指南", "2", "1");
+  $View = new \View\View("面板 &middot; 选课指南后台管理", "2", "1");
   $MoudleAdmin = new \Moudle\MoudleAdmin();
   $View->setData($MoudleAdmin->getData("admin_home"));
   $View->show("admin_home");
 });
 $router->get("/admin/password", function(){
-  $View = new \View\View("修改密码 &middot; 选课指南", "2", "5");
+  $View = new \View\View("修改密码 &middot; 选课指南后台管理", "2", "6");
   $View->show("admin_password");
 });
 $router->post("/admin/password", function(){
@@ -190,6 +206,23 @@ $router->post("/admin/password", function(){
   $MoudleAdmin->newPassword($_POST["password"]);
   header("location: /admin/logout/");
 });
+$router->get("/admin/user", function(){
+  $View = new \View\View("用户管理 &middot; 选课指南后台管理", "2", "2");
+  $View->show("admin_user");
+});
+$router->get("/admin/subject", function(){
+  $View = new \View\View("课程管理 &middot; 选课指南后台管理", "2", "3");
+  $View->show("admin_subject");
+});
+$router->get("/admin/major", function(){
+  $View = new \View\View("教学计划管理 &middot; 选课指南后台管理", "2", "4");
+  $View->show("admin_major");
+});
+$router->get("/admin/import", function(){
+  $View = new \View\View("导入向导 &middot; 选课指南后台管理", "2", "5");
+  $View->show("admin_import");
+});
+
 /**
 * ====================================================================
 * Testing routes

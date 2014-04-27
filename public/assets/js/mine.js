@@ -16,7 +16,7 @@ $(document).ready(function()
   $(window).scroll(function()
   {
     $(".fixed_save_b").css("top", $(window).height()-55);
-    if($(window).scrollTop()>209)
+    if($(window).scrollTop()>scrollT)
     {
       $("#top_div").show();
     }
