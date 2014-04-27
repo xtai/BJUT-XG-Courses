@@ -10,11 +10,8 @@
 * Thanks Van Damme(@Bramus) for this amazing PHP Router
 * <https://github.com/bramus/router>
 */
-// Admin/User/id
-// Admin/Subject/id
-// Admin/Major/id
 /**
-* ====404 Pages=======================================================
+* === 404 Pages ======================================================
 * And it looks like this: 
 *   404 Not Found
 *        :(
@@ -22,15 +19,19 @@
 */
 $router->set404(function() {
   header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
-  echo "<html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>404 Not Found</title></head><body><center style=\"margin-top: 60px; font-size:30px; color:#999; font-weight:100;\">404 Not Found</center><center style=\"margin-top: 20px; font-size:100px; color:#333; font-weight:100;\">: (</center></body>";
+  echo "<html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"w"
+     . "idth=device-width, initial-scale=1.0\"><title>404 Not Found</title></he"
+     . "ad><body><center style=\"margin-top: 60px; font-size:30px; color:#999; "
+     . "font-weight:100;\">404 Not Found</center><center style=\"margin-top: 20"
+     . "px; font-size:100px; color:#333; font-weight:100;\">: (</center></body>";
 });
 /**
-* ====Before Routing==================================================
+* === Before Routing =================================================
 * set authorization for regular users and admins.
 *   Logic is here:
-*   Everyone:    only [/mit/, /login/, /admin/login/]
-*   Auth Uesrs:  [/.*], not include [/admin/.*, /lgoin/]
-*   Auth Admins: only [/admin/.*], not include [/admin/login/]
+*     Everyone:    only [/mit/, /login/, /admin/login/]
+*     Auth Uesrs:  [/.*], not include [/admin/.*, /lgoin/]
+*     Auth Admins: only [/admin/.*], not include [/admin/login/]
 *
 * Notes: need a exit(); to prevent proceing more than we need
 * ====================================================================
@@ -61,13 +62,17 @@ $router->before("GET|POST", "/admin(.*)", function($url) {
   }
 });
 /**
-* ====For Everyone without Auth=======================================
+* === For Everyone without Auth ======================================
 * [/mit/, /login/, /admin/login/]
 *   GET  - /mit/         MIT License
 *   GET  - /login/       User Login
 *   GET  - /admin/login/ Admin Login
 *   POST - /login/       POST Method for User Login
 *   POST - /admin/login/ POST Method for Admin Login
+*
+* Notes: 
+*   To switch /login/ <==> /admin/login:
+*   press ":" key when you are in login pages.                    : )
 * ====================================================================
 */
 $router->get("/mit", function(){
@@ -93,7 +98,7 @@ $router->post("/admin/login", function(){
   header("location: /admin/");
 });
 /**
-* ====For Auth Users==================================================
+* === For Auth Users =================================================
 * [/.*], not include [/admin/.*, /lgoin/]
 *   GET  - /             Home Page - 所有课程
 *   POST - /select/      AJAX - select/unselect
@@ -170,7 +175,7 @@ $router->get('/user/', function(){
   }
 });
 /**
-* ====For Auth Admis==================================================
+* === For Auth Admins ================================================
 * [/admin/.*]
 *   GET  - /admin/                 Admin Page - 后台管理
 *   GET  - /admin/logout/          Logout --> unAuth
@@ -180,6 +185,7 @@ $router->get('/user/', function(){
 *   GET  - /admin/user/?q=.*       User Search
 *   GET  - /admin/user/\w*         User Info
 *   GET  - /admin/subject/         Subject - 课程管理
+*   GET  - /admin/user/?q=.*       Subject Search
 *   GET  - /admin/subject/\d*      Subject Info
 *   GET  - /admin/major/           Major - 教学计划管理
 *   GET  - /admin/major/\d*        Major Info
@@ -270,9 +276,11 @@ $router->get("/admin/import", function(){
 * Testing routes
 * ====================================================================
 */
+/*
 $router->get("/admin/a", function(){
   echo "admin/a : )<br/>";
 });
 $router->get("/a", function(){
   echo "a : )<br/>";
 });
+*/
