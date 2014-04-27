@@ -229,11 +229,8 @@ $router->get("/admin/import", function(){
 * ====================================================================
 */
 $router->get("/admin/a", function(){
-  echo "Admin~ a : )";
+  echo "admin/a : )<br/>";
 });
 $router->get("/a", function(){
   echo "a : )<br/>";
-  $MajorDAO   = new \Major\MajorDAO();
-  $UserDAO   = new \User\UserDAO();
-  print_r(array_values($UserDAO->getSubjectsByUserID($_SESSION["xg_user_id"])));
 });
