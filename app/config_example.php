@@ -1,7 +1,7 @@
 <?php
 /**
 * Configuration Example
-* to make this working using: config.php
+* Please copy to config.php
 *
 * @author     Xiaoyu Tai @ Beijing, 2014.4.26
 * @copyright  Copyright (c), 2014 Xiaoyu Tai
@@ -27,16 +27,41 @@ Apache Rewrite Rules Here:
   a .htaccess file was
   included in /../public/
 ------------------------------------
+
 Options +FollowSymLinks
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [L]
+
 ====================================
 Nginx Sever Example Here
 ------------------------------------
 
-Pending!
+server {
+  listen 80;
+  server_name www.abc.com;
+  root    .../xg/public;
+  index   index.php;
+  if (!-f $request_filename){
+    set $rule_0 1$rule_0;
+  }
+  if (!-d $request_filename){
+    set $rule_0 2$rule_0;
+  }
+  if ($rule_0 = "21"){
+    rewrite /.* /index.php last;
+  }
+  location / {
+    index index.php;
+  }
+  location ~ .php$ {
+    fastcgi_pass 127.0.0.1:9000;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+  }
+}
 
 ====================================
 */

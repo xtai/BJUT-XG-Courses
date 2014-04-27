@@ -4,9 +4,23 @@
 * function cards()
 */
 ?>
-<p style="font-size: 20px; font-weight:100;"><span style="font-size: 60px;"><?php echo $this->data["user"]["user_name"]; ?></span> 的选课</p>
+<div class="row">
+  <div class="col-sm-7">
+    <p style="font-size: 20px; font-weight:100;"><span style="font-size: 60px;"><?php echo $this->data["user"]["user_name"]; ?></span> 的选课</p>
+  </div>
+  <div class="col-sm-5">
+    <form action="<?php echo $this->path; ?>/user/" method="GET">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="输入学号，看看他/她都选了什么课！">
+        <span class="input-group-btn">
+          <button class="btn btn-danger" type="submmit">&nbsp;&nbsp;看!&nbsp;&nbsp;</button>
+        </span>
+      </div>
+    </form>
+  </div>
+</div>
 <div class="container" id="top_div" data-spy="affix" data-offset-top="111">
-  <div class="row hidden-xs">
+  <div class="row hidden-xs hidden-sm">
     <div class="col-sm-4">
       <div class="content header_2">
         <div class="row_header">
@@ -105,7 +119,21 @@
     cursor: default;
   }
   #top_div{
-    margin-top: -195px;
+    margin-top: -167px;
+  }
+  form{
+    margin-top: 38px;
+    margin-right: -5px;
+    margin-left: -5px;
+  }
+  @media (max-width: 767px){
+    form{
+      margin:-5px !important;
+      margin-bottom:10px!important;
+    }
   }
 </style>
+<script type="text/javascript">
+  var scrollT = 181;
+</script>
 <script src="<?php echo $this->path; ?>/assets/js/mine.js" type="text/javascript"></script>

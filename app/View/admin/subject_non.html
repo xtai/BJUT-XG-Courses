@@ -1,6 +1,6 @@
 <div class="text-center">
   <h1 style="font-weight: 100; font-size: 150px;" class="a1">Opps!</h1>
-  <h1 style="font-weight: 100; font-size: 60px;" class="a2">User ID: <?php echo $this->data["user"]["user_id"]; ?><br/>Does not exists</h1>
+  <h1 style="font-weight: 100; font-size: 60px;" class="a2">Subject ID: <?php echo $this->data["subject"]["subject_id"]; ?><br/>Does not exists</h1>
   <br />
   <br />
   <br />
@@ -16,6 +16,6 @@
 }
 </style>
 <script language="javascript">
-  function time(){var t=setTimeout("window.location='<?php echo $this->path; ?>/mine/';", 3000)}
+  function time(){var t=setTimeout("window.location='<?php echo $this->path; ?>/admin/subject/';", 3000)}
   time();
 </script>

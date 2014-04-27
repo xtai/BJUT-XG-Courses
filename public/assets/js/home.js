@@ -139,6 +139,7 @@ function avoid_val($x,$y,$z){
   else
   {
     change_val($x,$y,$z)
+    return;
   }
 }
 function change_ajax($x, $y)

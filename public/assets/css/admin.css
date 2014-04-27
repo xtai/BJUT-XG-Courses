@@ -2,16 +2,19 @@ h2{
   margin-top: 5px;
   margin-bottom: 15px;
 }
-
 .table{
   background-color: rgba(255,255,255,0.6);
 }
-.table tr:hover{
-  cursor: pointer;
+.btn-default{
+  color: #D55;
 }
-
+.btn-default:hover{
+  color: #D22;
+}
 .pagin{
   text-align: center;
+  margin-top: -20px;
+  margin-bottom: -20px;
 }
 .pagination>li>a,
 .pagination>li>span{
@@ -21,7 +24,6 @@ h2{
 .pagination>li>span:hover{
   color: #D55;
 }
-
 .pagination>.active>a,
 .pagination>.active>span,
 .pagination>.active>a:hover,
