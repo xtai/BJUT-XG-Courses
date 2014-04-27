@@ -7,7 +7,6 @@
 * @author     Xiaoyu Tai @ Beijing, 2014.4.26
 * @copyright  Copyright (c), 2014 Xiaoyu Tai
 * @license    MIT license (see /mit/)
-*
 */
 $runtime_start = microtime(true);
 
