@@ -1,0 +1,35 @@
+h2{
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+.table{
+  background-color: rgba(255,255,255,0.6);
+}
+.btn-default{
+  color: #D55;
+}
+.btn-default:hover{
+  color: #D22;
+}
+.pagin{
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: -20px;
+}
+.pagination>li>a,
+.pagination>li>span{
+  color: #D55;
+}
+.pagination>li>a:hover,
+.pagination>li>span:hover{
+  color: #D55;
+}
+.pagination>.active>a,
+.pagination>.active>span,
+.pagination>.active>a:hover,
+.pagination>.active>span:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span:focus{
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}

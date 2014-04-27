@@ -1,5 +1,4 @@
 var s = new Array();
-var r = new Array(0,32,9,8,12);
 var d = new Array(0,0,0,0,0);
 var n = 0;
 var t = 0;
@@ -140,12 +139,13 @@ function avoid_val($x,$y,$z){
   else
   {
     change_val($x,$y,$z)
+    return;
   }
 }
 function change_ajax($x, $y)
 {
   $title = $("#title" + $x).html();
-  $.post('./action/change.php', {sid: $x, option: $y}, function(data)
+  $.post('./select/', {sid: $x, option: $y}, function(data)
   {
     if(data)
     {

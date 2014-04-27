@@ -1,6 +1,11 @@
 body{
   //padding-top: 20px;
 }
+a, .btn{
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+}
 a{
   color: #D55;
 }
@@ -39,6 +44,7 @@ hr{
   background-color: #E77;
 }
 #backt{
+  z-index: 905;
   position:fixed;
   right:20px;
   bottom:3px;

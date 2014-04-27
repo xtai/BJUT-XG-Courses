@@ -16,7 +16,7 @@ $(document).ready(function()
   $(window).scroll(function()
   {
     $(".fixed_save_b").css("top", $(window).height()-55);
-    if($(window).scrollTop()>209)
+    if($(window).scrollTop()>scrollT)
     {
       $("#top_div").show();
     }
@@ -59,6 +59,10 @@ function update()
     $("#sign-div").addClass("glyphicon-ok");
     $("#alert-div").removeClass("alert-warning");
     $("#alert-div").addClass("alert-success");
+    $("#search-div").removeClass("has-warning");
+    $("#search-div").addClass("has-success");
+    $("#search-button").removeClass("btn-warning");
+    $("#search-button").addClass("btn-success");
     $("#p-div").html("已经完成教学计划了~");
   }
   $("#progress-bar").css("width", a+"%");

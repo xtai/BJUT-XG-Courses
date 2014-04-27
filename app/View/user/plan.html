@@ -1,0 +1,39 @@
+<?php
+/**
+* Data require: data["plan_link"]
+*/
+?>
+<br /><br /><br />
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <a href="<?php echo $this->data["plan_link"] ?>" class="plan-a">
+      <div class="plan">
+        <h1 style="text-align: center;">
+          <br /><br /><br /><span class="plan-icon glyphicon glyphicon-download"></span><br/>下载教学计划<br /><br /><br /><br />
+        </h1>
+      </div>
+    </a>
+  </div>
+</div>
+<br /><br /><br />
+<style id="custom_style" type="text/css">
+  .plan-icon{
+    font-size: 100px;
+    padding-bottom: 20px;
+  }
+  .plan-outter{
+    margin: 0 auto;
+    width: 50%;
+  }
+  .plan{
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    background-color: rgba(255,255,255,0.5);
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+  }
+  .plan:hover{
+    background-color: rgba(255,255,255,0.75);
+  }
+</style>
