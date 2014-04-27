@@ -45,7 +45,7 @@ class AdminDAO extends \Base\DAO{
       }else{
         $user_lastpwdchange = "'". $data["user_lastpwdchange"] ."'";
       }
-      \Base\MySQL::query("INSERT INTO `admins` (`user_id`, `major_id`, `class_id`, `user_password`, `user_name`, `user_lastlogin`, `user_logintimes`, `user_lastpwdchange`) VALUES ('".$data["user_id"]."', '".$data["major_id"]."', '".$data["class_id"]."', '".$data["user_password"]."', '".$data["user_name"]."', ".$user_lastlogin.", '".$data["user_logintimes"]."', ".$user_lastpwdchange.");");
+      \Base\MySQL::query("INSERT INTO `admins` (`user_id`, `user_password`, `user_name`, `user_lastlogin`, `user_logintimes`, `user_lastpwdchange`) VALUES ('".$data["user_id"]."', '".$data["user_password"]."', '".$data["user_name"]."', ".$user_lastlogin.", '".$data["user_logintimes"]."', ".$user_lastpwdchange.");");
       return 1;
     }else{
       trigger_error("Admin(".$data["user_id"].") already exsisted in Database!");
@@ -67,7 +67,7 @@ class AdminDAO extends \Base\DAO{
       }else{
         $user_lastpwdchange = "'". $data["user_lastpwdchange"] ."'";
       }
-      \Base\MySQL::query("UPDATE `admins` SET `major_id`='".$data["major_id"]."', `class_id`='".$data["class_id"]."', `user_password`='".$data["user_password"]."', `user_name`='".$data["user_name"]."', `user_logintimes`='".$data["user_logintimes"]."',`user_lastlogin`=".$user_lastlogin.", `user_lastpwdchange`=".$user_lastpwdchange."   WHERE `user_id`='".$data["user_id"]."';");
+      \Base\MySQL::query("UPDATE `admins` SET `user_password`='".$data["user_password"]."', `user_name`='".$data["user_name"]."', `user_logintimes`='".$data["user_logintimes"]."',`user_lastlogin`=".$user_lastlogin.", `user_lastpwdchange`=".$user_lastpwdchange."   WHERE `user_id`='".$data["user_id"]."';");
       return 1;
     }else{
       trigger_error("Admin(".$data["user_id"].") doesn't exists in Database!");

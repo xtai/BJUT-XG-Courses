@@ -16,10 +16,10 @@ class MoudleAdmin extends Moudle{
     return null;
   }
 
-  public function login($username, $password){
-    $password = self::md5Password($password);
+  public function login($user_id, $user_password){
+    $user_password = self::md5Password($user_password);
     $AdminDAO = new \User\AdminDAO();
-    $Admin = $AdminDAO->login($username, $password);
+    $Admin = $AdminDAO->login($user_id, $user_password);
     if($Admin != null){
       $Admin->set("user_lastlogin", date('Y-m-d H:i:s'));
       $Admin->set("user_logintimes", $Admin->get("user_logintimes")+1);
