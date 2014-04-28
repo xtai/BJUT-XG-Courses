@@ -1,6 +1,6 @@
 <?php
 /**
-* Class Module
+* Class Model
 * Data Access Object
 *
 * @author     Xiaoyu Tai @ Beijing, 2014.4.25
@@ -8,9 +8,9 @@
 * @license    MIT license (see /mit/)
 */
 
-namespace Module;
+namespace Model;
 
-class Module{
+class Model{
   public function __construct(){
     return null;
   }

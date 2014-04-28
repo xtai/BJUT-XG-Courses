@@ -1,16 +1,16 @@
 <?php
 /**
-* Class ModuleUser
-* Module for all User's event
+* Class ModelUser
+* Model for all User's event
 *
 * @author     Xiaoyu Tai @ Beijing, 2014.4.26
 * @copyright  Copyright (c), 2014 Xiaoyu Tai
 * @license    MIT license (see /mit/)
 */
 
-namespace Module;
+namespace Model;
 
-class ModuleUser extends Module{
+class ModelUser extends Model{
 
   public function __construct(){
     return null;

@@ -1,16 +1,16 @@
 <?php
 /**
-* Class ModuleAdmin
-* Module for all Admin's event
+* Class ModelAdmin
+* Model for all Admin's event
 *
 * @author     Xiaoyu Tai @ Beijing, 2014.4.25
 * @copyright  Copyright (c), 2014 Xiaoyu Tai
 * @license    MIT license (see /mit/)
 */
 
-namespace Module;
+namespace Model;
 
-class ModuleAdmin extends Module{
+class ModelAdmin extends Model{
   protected $num = 16; //items per page.
   public function __construct(){
     return null;

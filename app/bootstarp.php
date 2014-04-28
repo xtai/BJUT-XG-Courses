@@ -8,8 +8,7 @@
 */
 // Need configuration file to work
 if(!file_exists(__DIR__ . "/config.php")){
-  error_log("Needed Config File, Copy /app/config_example.php -> /app/config.php");
-  die();
+  die("Needed config file, copy /app/config_example.php -> /app/config.php");
 }
 // Include all Classes
 include_once __DIR__ . "/config.php";
