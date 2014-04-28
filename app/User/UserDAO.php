@@ -42,7 +42,7 @@ class UserDAO extends \Base\DAO{
 
   public function insertObject($User){
     $data = $User->getAll();
-    if($this->checkUser($data["user_id"])){
+    if(!$this->checkUser($data["user_id"])){
       if($data["user_lastlogin"] == ""){
         $user_lastlogin = "NULL";
       }else{

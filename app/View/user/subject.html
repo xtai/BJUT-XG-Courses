@@ -1,4 +1,3 @@
-
 <h1><?php echo $this->data["subject"]["subject_name"]; ?></h1>
 <div class="row">
   <div class="col-sm-6">
@@ -13,18 +12,7 @@
     <h4>已选人数: <?php echo $this->data["subject"]["subject_enroll"]; ?>人</h4>
     <hr />
     <h3>在这儿讨论一下</h3>
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
- var disqus_shortname = 'bjut-xg-courses'; // required: replace example with your forum shortname
- (function() {
-   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-        
+    <?php $this->disqus(); ?>
   </div>
   <div class="col-sm-6">
     <h3>都谁选了这门课 [<?php echo $this->data["subject"]["subject_enroll"]; ?>人] :</h3>

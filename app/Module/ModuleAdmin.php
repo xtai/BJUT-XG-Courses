@@ -1,16 +1,16 @@
 <?php
 /**
-* Class MoudleAdmin
-* Moudle for all Admin's event
+* Class ModuleAdmin
+* Module for all Admin's event
 *
 * @author     Xiaoyu Tai @ Beijing, 2014.4.25
 * @copyright  Copyright (c), 2014 Xiaoyu Tai
 * @license    MIT license (see /mit/)
 */
 
-namespace Moudle;
+namespace Module;
 
-class MoudleAdmin extends Moudle{
+class ModuleAdmin extends Module{
   protected $num = 16; //items per page.
   public function __construct(){
     return null;

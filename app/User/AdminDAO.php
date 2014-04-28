@@ -33,8 +33,7 @@ class AdminDAO extends \Base\DAO{
 
   public function insertObject($Admin){
     $data = $Admin->getAll();
-    $result = \Base\MySQL::query("SELECT * FROM admins WHERE user_id = '". $data["user_id"] ."';");
-    if(mysql_num_rows($result) == 0){
+    if(!$this->checkAdmin($data["user_id"])){
       if($data["user_lastlogin"] == ""){
         $user_lastlogin = "NULL";
       }else{
@@ -55,8 +54,7 @@ class AdminDAO extends \Base\DAO{
 
   public function updateObject($Admin){
     $data = $Admin->getAll();
-    $result = \Base\MySQL::query("SELECT * FROM admins WHERE user_id = '". $data["user_id"] ."';");
-    if(mysql_num_rows($result) == 1){
+    if($this->checkAdmin($data["user_id"])){
       if($data["user_lastlogin"] == ""){
         $user_lastlogin = "NULL";
       }else{
@@ -77,8 +75,7 @@ class AdminDAO extends \Base\DAO{
 
   public function deleteObject($Admin){
     $data = $Admin->getAll();
-    $result = \Base\MySQL::query("SELECT * FROM admins WHERE user_id = '". $data["user_id"] ."';");
-    if(mysql_num_rows($result) == 1){
+    if($this->checkAdmin($data["user_id"])){
       \Base\MySQL::query("DELETE FROM `admins` WHERE `user_id`='".$data["user_id"]."';");
       return 1;
     }else{
@@ -86,10 +83,8 @@ class AdminDAO extends \Base\DAO{
     }
     return 0;
   }
-
   public function deleteObjectByID($user_id){
-    $result = \Base\MySQL::query("SELECT * FROM admins WHERE user_id = '". $user_id ."';");
-    if(mysql_num_rows($result) == 1){
+    if($this->checkAdmin($user_id)){
       \Base\MySQL::query("DELETE FROM `admins` WHERE `user_id`='".$user_id."';");
       return 1;
     }else{
@@ -115,6 +110,10 @@ class AdminDAO extends \Base\DAO{
       default:
         return null;
     }
+  }
+  public function checkAdmin($user_id){
+    $result = \Base\MySQL::query("SELECT * FROM admins WHERE user_id = '". $user_id ."';");
+    return mysql_num_rows($result);
   }
   public function newPassword($user_id, $new_password){
     $datetime = date('Y-m-d H:i:s');

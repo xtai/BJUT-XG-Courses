@@ -20,6 +20,7 @@ $db_password      = "password"; //^
 $db_database      = "database"; //^
 
 $google_analytics = "";         //--> Google Analytics Tracking ID
+$disqus           = "";         //--> Disqus Code
 
 /*
 ====================================
