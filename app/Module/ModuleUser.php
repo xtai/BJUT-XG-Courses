@@ -1,16 +1,16 @@
 <?php
 /**
-* Class MoudleUser
-* Moudle for all User's event
+* Class ModuleUser
+* Module for all User's event
 *
 * @author     Xiaoyu Tai @ Beijing, 2014.4.26
 * @copyright  Copyright (c), 2014 Xiaoyu Tai
 * @license    MIT license (see /mit/)
 */
 
-namespace Moudle;
+namespace Module;
 
-class MoudleUser extends Moudle{
+class ModuleUser extends Module{
 
   public function __construct(){
     return null;

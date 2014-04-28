@@ -19,6 +19,11 @@ class Application{
     date_default_timezone_set("Asia/Hong_Kong");
     \Base\MySQL::init($db_location, $db_username, $db_password, $db_database);
     $router = new \Base\Router();
+    global $path;
+    // in case running on port other than 80
+    if($_SERVER['SERVER_PORT'] != 80){
+      $path .= ":".$_SERVER['SERVER_PORT'];
+    }
     include_once __DIR__ . "/../routes.php";
     $router->run();
   }
