@@ -8,10 +8,10 @@
 * @copyright  Copyright (c), 2014 Xiaoyu Tai
 * @license    MIT license (see /mit/)
 */
+// Count Time
 $runtime_start = microtime(true);
 
 include_once __DIR__ . '/../app/bootstarp.php';
 
-$App->run();
-
+// Echo total time
 echo "\n<b id=\"_t\" style=\"display: none;\">".round((microtime(true)-$runtime_start)*1000)."</b>";
