@@ -84,8 +84,8 @@ $router->get("/login", function(){
   $View->show("login");
 });
 $router->post("/login", function(){
-  $ModuleUser = new \Module\ModuleUser();
-  $ModuleUser->login($_POST["username"], $_POST["password"]);
+  $ModelUser = new \Model\ModelUser();
+  $ModelUser->login($_POST["username"], $_POST["password"]);
   header("location: /");
 });
 $router->get("/admin/login", function(){
@@ -93,8 +93,8 @@ $router->get("/admin/login", function(){
   $View->show("admin_login");
 });
 $router->post("/admin/login", function(){
-  $ModuleAdmin = new \Module\ModuleAdmin();
-  $ModuleAdmin->login($_POST["username"], $_POST["password"]);
+  $ModelAdmin = new \Model\ModelAdmin();
+  $ModelAdmin->login($_POST["username"], $_POST["password"]);
   header("location: /admin/");
 });
 /**
@@ -114,30 +114,30 @@ $router->post("/admin/login", function(){
 * ====================================================================
 */
 $router->get("/", function(){
-  $ModuleUser = new \Module\ModuleUser();
+  $ModelUser = new \Model\ModelUser();
   $View = new \View\View("所有课程 &middot; 选课指南", "0", "1");
-  $View->setData($ModuleUser->getData("home"));
+  $View->setData($ModelUser->getData("home"));
   $View->show("home");
 });
 $router->post("/select", function(){
-  $ModuleUser = new \Module\ModuleUser();
-  $ModuleUser->ajax_change($_POST['sid'], $_POST['option']);
+  $ModelUser = new \Model\ModelUser();
+  $ModelUser->ajax_change($_POST['sid'], $_POST['option']);
 });
 $router->get("/mine", function(){
-  $ModuleUser = new \Module\ModuleUser();
+  $ModelUser = new \Model\ModelUser();
   $View = new \View\View("我的课程 &middot; 选课指南", "0", "2");
-  $View->setData($ModuleUser->getData("mine"));
+  $View->setData($ModelUser->getData("mine"));
   $View->show("mine");
 });
 $router->get("/logout", function(){
-  $ModuleUser = new \Module\ModuleUser();
-  $ModuleUser::logout();
+  $ModelUser = new \Model\ModelUser();
+  $ModelUser::logout();
   header("location: /login/");
 });
 $router->get("/plan", function(){
-  $ModuleUser = new \Module\ModuleUser();
+  $ModelUser = new \Model\ModelUser();
   $View = new \View\View("教学计划 &middot; 选课指南", "0", "3");
-  $View->setData($ModuleUser->getData("plan"));
+  $View->setData($ModelUser->getData("plan"));
   $View->show("plan");
 });
 $router->get("/message", function(){
@@ -149,20 +149,20 @@ $router->get("/password", function(){
   $View->show("password");
 });
 $router->post("/password", function(){
-  $ModuleUser = new \Module\ModuleUser();
-  $ModuleUser->newPassword($_POST["password"]);
+  $ModelUser = new \Model\ModelUser();
+  $ModelUser->newPassword($_POST["password"]);
   header("location: /logout/");
 });
 $router->get('/subject/(\d*)', function($subject_id){
-  $ModuleUser = new \Module\ModuleUser();
-  $data = $ModuleUser->getSubjectData($subject_id);
+  $ModelUser = new \Model\ModelUser();
+  $data = $ModelUser->getSubjectData($subject_id);
   $View = new \View\View($data["subject"]["subject_name"]." &middot; 选课指南", "0", null);
   $View->setData($data);
   $View->show($data["viewname"]);
 });
 $router->get('/user/(\w*)', function($user_id){
-  $ModuleUser = new \Module\ModuleUser();
-  $data = $ModuleUser->getUserData($user_id);
+  $ModelUser = new \Model\ModelUser();
+  $data = $ModelUser->getUserData($user_id);
   $View = new \View\View($data["_title"]." &middot; 选课指南", "0", null);
   $View->setData($data);
   $View->show($data["viewname"]);
@@ -193,14 +193,14 @@ $router->get('/user/', function(){
 * ====================================================================
 */
 $router->get("/admin/logout", function(){
-  $ModuleAdmin = new \Module\ModuleAdmin();
-  $ModuleAdmin::logout();
+  $ModelAdmin = new \Model\ModelAdmin();
+  $ModelAdmin::logout();
   header("location: /admin/login/");
 });
 $router->get("/admin/", function(){
   $View = new \View\View("面板 &middot; 选课指南后台管理", "2", "1");
-  $ModuleAdmin = new \Module\ModuleAdmin();
-  $View->setData($ModuleAdmin->getData("admin_home"));
+  $ModelAdmin = new \Model\ModelAdmin();
+  $View->setData($ModelAdmin->getData("admin_home"));
   $View->show("admin_home");
 });
 $router->get("/admin/password", function(){
@@ -208,31 +208,31 @@ $router->get("/admin/password", function(){
   $View->show("admin_password");
 });
 $router->post("/admin/password", function(){
-  $ModuleAdmin = new \Module\ModuleAdmin();
-  $ModuleAdmin->newPassword($_POST["password"]);
+  $ModelAdmin = new \Model\ModelAdmin();
+  $ModelAdmin->newPassword($_POST["password"]);
   header("location: /admin/logout/");
 });
 $router->get("/admin/user", function(){
   if(isset($_GET["q"]) && preg_match("/\w*/", $_GET["q"])){
     header("location: /admin/user/".$_GET["q"]);
   }else{
-    $ModuleAdmin = new \Module\ModuleAdmin();
-    $total_page_num = $ModuleAdmin->getTotalPageNum("user");
+    $ModelAdmin = new \Model\ModelAdmin();
+    $total_page_num = $ModelAdmin->getTotalPageNum("user");
     $page_current_num = 1;
     if(isset($_GET["p"])){
       if(preg_match("/\d*/", $_GET["p"]) && ($_GET["p"] > 0) && (($total_page_num - $_GET["p"]) >= 0)){
         $page_current_num = $_GET["p"];
       }
     }
-    $data = $ModuleAdmin->getUserMainData($page_current_num);
+    $data = $ModelAdmin->getUserMainData($page_current_num);
     $View = new \View\View("用户管理 &middot; 选课指南后台管理", "2", "2");
     $View->setData($data);
     $View->show("admin_user");
   }
 });
 $router->get('/admin/user/(\d*)', function($user_id){
-  $ModuleAdmin = new \Module\ModuleAdmin();
-  $data = $ModuleAdmin->getUserData($user_id);
+  $ModelAdmin = new \Model\ModelAdmin();
+  $data = $ModelAdmin->getUserData($user_id);
   $View = new \View\View($data["_title"]." &middot; 选课指南后台管理", "0", null);
   $View->setData($data);
   $View->show($data["viewname"]);
@@ -241,23 +241,23 @@ $router->get("/admin/subject", function(){
   if(isset($_GET["q"]) && preg_match("/\d*/", $_GET["q"])){
     header("location: /admin/subject/".$_GET["q"]);
   }else{
-    $ModuleAdmin = new \Module\ModuleAdmin();
-    $total_page_num = $ModuleAdmin->getTotalPageNum("subject");
+    $ModelAdmin = new \Model\ModelAdmin();
+    $total_page_num = $ModelAdmin->getTotalPageNum("subject");
     $page_current_num = 1;
     if(isset($_GET["p"])){
       if(preg_match("/\d*/", $_GET["p"]) && ($_GET["p"] > 0) && (($total_page_num - $_GET["p"]) >= 0)){
         $page_current_num = $_GET["p"];
       }
     }
-    $data = $ModuleAdmin->getSubjectMainData($page_current_num);
+    $data = $ModelAdmin->getSubjectMainData($page_current_num);
     $View = new \View\View("课程管理 &middot; 选课指南后台管理", "2", "3");
     $View->setData($data);
     $View->show("admin_subject");
   }
 });
 $router->get('/admin/subject/(\d*)', function($subject_id){
-  $ModuleAdmin = new \Module\ModuleAdmin();
-  $data = $ModuleAdmin->getSubjectData($subject_id);
+  $ModelAdmin = new \Model\ModelAdmin();
+  $data = $ModelAdmin->getSubjectData($subject_id);
   $View = new \View\View($data["subject"]["subject_name"]." &middot; 选课指南后台管理", "0", null);
   $View->setData($data);
   $View->show($data["viewname"]);
