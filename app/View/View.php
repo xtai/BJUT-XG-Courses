@@ -119,4 +119,7 @@ class View{
       default:  return "WTF?";
     }
   }
+  protected function disqus(){
+    include_once __DIR__ . "/assets/disqus.html";
+  }
 }

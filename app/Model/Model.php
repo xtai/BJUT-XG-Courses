@@ -1,6 +1,6 @@
 <?php
 /**
-* Class Moudle
+* Class Model
 * Data Access Object
 *
 * @author     Xiaoyu Tai @ Beijing, 2014.4.25
@@ -8,9 +8,9 @@
 * @license    MIT license (see /mit/)
 */
 
-namespace Moudle;
+namespace Model;
 
-class Moudle{
+class Model{
   public function __construct(){
     return null;
   }

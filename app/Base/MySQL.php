@@ -49,20 +49,3 @@ class MySQL{
     return 1;
   }
 }
-
-/*
-class M extends MySQL{
-  public function __construct(){
-    return null;
-  }
-  public function a(){
-    $result = MySQL::query("SELECT * FROM majors;");
-    $row = mysql_fetch_array($result);
-    echo $row[0];
-  }
-}
-$M = new MySQL();
-$M->init("localhost", "tai", "12345678", "xg_courses");
-
-$MM = new M();
-$MM->a();*/
