@@ -11,17 +11,17 @@ namespace User;
 
 class User extends \Base\Objects{
 	protected $user_id;
-  protected $major_id;
-  protected $class_id;
+  	protected $major_id;
+  	protected $class_id;
 	protected $user_password;
 	protected $user_name;
 	protected $user_lastlogin;
 	protected $user_logintimes;
 	protected $user_lastpwdchange;
 
-  protected $selected_list;
+  	protected $selected_list;
 
-  protected $got_points;
+  	protected $got_points;
 
 	public function __construct(){
 		return null;
