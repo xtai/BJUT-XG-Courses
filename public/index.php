@@ -8,6 +8,11 @@
 * @copyright  Copyright (c), 2014 Xiaoyu Tai
 * @license    MIT license (see /mit/)
 */
+
+ini_set('error_reporting',E_ALL);
+ini_set('display_errors',1);
+
+
 // Count Time
 $runtime_start = microtime(true);
 

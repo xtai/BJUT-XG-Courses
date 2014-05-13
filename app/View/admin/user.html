@@ -16,7 +16,7 @@ if($this->data["page"]["item_total_num"]!=0){
   <div class="input-group has-error">
     <input type="text" class="form-control" name="q" placeholder="暂时支持输入精准的学号 e.g.11110101">
     <span class="input-group-btn">
-      <button class="btn btn-danger" type="submmit">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;搜索&nbsp;&nbsp;&nbsp;&nbsp;</button>
+      <button class="btn btn-danger" type="submit">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;搜索&nbsp;&nbsp;&nbsp;&nbsp;</button>
     </span>
   </div>
 </form>
@@ -25,13 +25,58 @@ if($this->data["page"]["item_total_num"]!=0){
 <div class="col-sm-6">
   <div class="btn-group btn-group-justified">
     <div class="btn-group">
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> 新建学生</button>
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newUser"><span class="glyphicon glyphicon-plus"></span> 新建学生</button>
     </div>
     <div class="btn-group">
-      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-file"></span> 导入班级</button>
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newClass"><span class="glyphicon glyphicon-file"></span> 导入班级</button>
     </div>
-    <div class="btn-group">
-      <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> 批量删除</button>
+</div>
+</div>
+<!-- Create User Modal -->
+<div class="modal fade dialog" id="newUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">添加学生</h4>
+      </div>
+      <form action="/admin/user/new" method="post">
+        <div class="modal-body" id="new_body">
+          <div class="form-group">
+            <input type="text" class="form-control" id="userid" name="userid" placeholder="输入学生学号" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="username" name="username" placeholder="输入学生姓名" required>
+          </div>
+          <span class="help-block">说明：学生默认密码为学生学号，请提醒学生尽快修改密码！</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <input type="submit" class="btn btn-danger" value="添加">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Import Class Modal -->
+<div class="modal fade" id="newClass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">导入班级</h4>
+      </div>
+      <form action="/admin/user/import" method="post" enctype="multipart/form-data">
+        <div class="modal-body" id="import_body">
+          <div class="form-group">
+            <input type="file" class="btn btn-default" name="file" id="file">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <input type="submit" class="btn btn-danger" value="导入">
+        </div>
+      </form>
     </div>
   </div>
 </div>
@@ -44,6 +89,7 @@ echo $this->data["user"][$start_i]["user_name"]
     ."(".$this->data["user"][$end_i]["user_id"].")";
 ?></p>
 <p>共 <?php echo $this->data["page"]["item_total_num"]; ?> 名学生, 第 <?php echo $this->data["page"]["page_current_num"]; ?> 页</p>
+<form action="/admin/user/update" method="post">
 <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
@@ -54,6 +100,9 @@ echo $this->data["user"][$start_i]["user_name"]
       <th class="hidden-xs">上次登录时间</th>
       <th class="hidden-xs">登录次数</th>
       <th class="visible-lg">上次修改密码时间</th>
+      <th class="visible-lg">
+      <input class="btn btn-danger btn-block" id="delbtn" type="submit" value="批量删除">
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -78,10 +127,22 @@ echo $this->data["user"][$start_i]["user_name"]
         ."<td class=\"hidden-xs hidden-sm\"><a href=\"".$href."\">".$user_item["class_id"]."</a></td>"
         ."<td class=\"hidden-xs\"><a href=\"".$href."\">".$user_item["user_lastlogin"]."</a></td>"
         ."<td class=\"hidden-xs\"><a href=\"".$href."\">".$user_item["user_logintimes"]." 次</a></td>"
-        ."<td class=\"visible-lg\"><a href=\"".$href."\">".$user_item["user_lastpwdchange"]."</a></td></tr>";
+        ."<td class=\"visible-lg\"><a href=\"".$href."\">".$user_item["user_lastpwdchange"]."</a></td>";
+?>
+
+    <td> 
+      <div class='checkbox' id="checkbox">
+      <label>
+        <input type='checkbox' name="<?php echo $user_item['user_id'] ?>" value="<?php echo $user_item['user_id'] ?>"  >
+      </label>
+      </div>
+    </td>
+    </tr>
+  </form>
+<?php
   }
 ?>
-  </tbody>
+</tbody>
 </table>
 <?php
   if($this->data["page"]["page_total_num"] != 1){
@@ -120,6 +181,17 @@ echo $this->data["user"][$start_i]["user_name"]
   }
   table tr td {
     padding: 0!important;
+  }
+  #newUser,#newClass {
+    padding-top: 150px;
+  }
+  #new_body, #import_body
+  {
+    padding-top: 30px;
+  }
+  #checkbox
+  {
+    padding-left: 70px;
   }
 </style>
 <link href="<?php echo $this->path; ?>/assets/css/admin.css" rel="stylesheet">

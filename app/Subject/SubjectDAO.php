@@ -33,6 +33,7 @@ class SubjectDAO extends \Base\DAO{
 
   public function insertObject($Subject){
     $data = $Subject->getAll();
+    var_dump($data);
     $result = \Base\MySQL::query("SELECT * FROM subjects WHERE subject_id = '". $data["subject_id"] ."';");
     if(mysql_num_rows($result) == 0){
     \Base\MySQL::query("INSERT INTO `subjects` (`subject_id`, `subject_name`, `subject_examtype`, `subject_point`, `subject_type`, `subject_time`, `subject_school`, `major_id`) VALUES ('".$data["subject_id"]."', '".$data["subject_name"]."', '".$data["subject_examtype"]."', '".$data["subject_point"]."', '".$data["subject_type"]."', '".$data["subject_time"]."', '".$data["subject_school"]."', '".$data["major_id"]."');");

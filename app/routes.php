@@ -26,42 +26,6 @@ $router->set404(function() {
      . "px; font-size:100px; color:#333; font-weight:100;\">: (</center></body>";
 });
 /**
-* === Before Routing =================================================
-* set authorization for regular users and admins.
-*   Logic is here:
-*     Everyone:    only [/mit/, /login/, /admin/login/]
-*     Auth Uesrs:  [/.*], not include [/admin/.*, /lgoin/]
-*     Auth Admins: only [/admin/.*], not include [/admin/login/]
-*
-* Notes: need a exit(); to prevent proceing more than we need
-* ====================================================================
-*/
-$router->before("GET|POST", "/(.*)", function($url) {
-  if(!isset($_SESSION["xg_user_type"]) && $url != "login" && !preg_match("/admin/", $url) && $url != "mit"){
-    header("location: /login/");
-    exit();
-  }elseif(isset($_SESSION["xg_user_type"])){
-    if($_SESSION["xg_user_type"] == "admins" && !preg_match("/admin/", $url) && $url != "mit"){
-      header("location: /admin/");
-      exit();
-    }
-  }
-});
-$router->before("GET|POST", "/admin(.*)", function($url) {
-  if(!isset($_SESSION["xg_user_type"]) && $url != "login"){
-    header("location: /admin/login/");
-    exit();
-  }elseif(isset($_SESSION["xg_user_type"])){
-    if($_SESSION["xg_user_type"] == "users"){
-      header("location: /");
-      exit();
-    }elseif($url == "login"){
-      header("location: /admin/");
-      exit();
-    }
-  }
-});
-/**
 * === For Everyone without Auth ======================================
 * [/mit/, /login/, /admin/login/]
 *   GET  - /mit/         MIT License
@@ -182,12 +146,19 @@ $router->get('/user/', function(){
 *   GET  - /admin/password/        Password - 修改密码
 *   POST - /admin/password/        POST Method for Change Password
 *   GET  - /admin/user/            User - 学生管理
+*   POST - /admin/user/new         User - 添加学生
+*   POST - /admin/user/import      User - 导入班级
+*   POST - /admin/user/update      User - 批量删除
 *   GET  - /admin/user/?q=.*       User Search
 *   GET  - /admin/user/\w*         User Info
 *   GET  - /admin/subject/         Subject - 课程管理
+*   POST - /admin/subject/new      Subject - 添加课程
+*   POST - /admin/subject/import   Subject - 导入课程
 *   GET  - /admin/user/?q=.*       Subject Search
 *   GET  - /admin/subject/\d*      Subject Info
 *   GET  - /admin/major/           Major - 教学计划管理
+*   POST - /admin/major/new        Major - 新建教学计划
+*   POST - /admin/major/import     Major - 导入教学计划
 *   GET  - /admin/major/\d*        Major Info
 *   GET  - /admin/import/          Import - 导入向导
 * ====================================================================
@@ -230,6 +201,20 @@ $router->get("/admin/user", function(){
     $View->show("admin_user");
   }
 });
+$router->post("/admin/user/new", function(){
+  $ModelAdmin = new \Model\ModelAdmin();
+  $ModelAdmin->newUser($_POST);
+});
+$router->post("/admin/user/import", function(){
+
+  $ModelAdmin = new \Model\ModelAdmin();
+  $ModelAdmin->importUser($_FILES['file']);     
+});
+$router->post('/admin/user/update', function()
+{
+  $ModelAdmin = new \Model\ModelAdmin();
+  $ModelAdmin->updateUser($_POST); 
+});
 $router->get('/admin/user/(\d*)', function($user_id){
   $ModelAdmin = new \Model\ModelAdmin();
   $data = $ModelAdmin->getUserData($user_id);
@@ -255,6 +240,47 @@ $router->get("/admin/subject", function(){
     $View->show("admin_subject");
   }
 });
+$router->post("/admin/subject/new", function()
+{
+  // get input data
+  $data = $_POST;
+  var_dump($data);  
+  // import class info
+  $subDAO = new \Subject\SubjectDAO;
+  $subject = new \Subject\Subject;
+
+  $subject->set('subject_id', $data['subject_id']);
+  $subject->set('subject_name', $data['subject_name']);
+  $subject->set('major_id', $data['subject_major']);
+  $subject->set('subject_school', $data['subject_school']);
+  $subject->set('subject_time', $data['subject_start']);
+  $subject->set('subject_point', $data['subject_credit']);
+  $subject->set('subject_type', $data['subject_type']);
+  $subject->set('subject_examtype', $data['subject_examtype']);
+  
+  // redirect to /admin/subject and show success
+  echo $subDAO->insertObject($subject);
+
+  // or return fail
+
+  // test
+  echo "new subject";
+});
+$router->post("/admin/subject/import", function()
+{
+  // get input data
+  $data = $_POST;
+  var_dump($data);
+
+  // import class info
+
+  // redirect to /admin/subject and show success
+
+  // or fail
+
+  // test
+  echo "import subjects";
+});
 $router->get('/admin/subject/(\d*)', function($subject_id){
   $ModelAdmin = new \Model\ModelAdmin();
   $data = $ModelAdmin->getSubjectData($subject_id);
@@ -266,6 +292,37 @@ $router->get("/admin/major", function(){
   $View = new \View\View("教学计划管理 &middot; 选课指南后台管理", "2", "4");
   $View->show("admin_major");
 });
+$router->post("/admin/major/new", function()
+{
+  // get input data
+  $data = $_POST;
+  var_dump($data);
+
+  // import class info
+
+  // redirect to /admin/subject and show success
+
+  // or return fail
+
+  // test
+  echo "new major";
+});
+$router->post("/admin/major/import", function()
+{
+  // get input data
+  $data = $_POST;
+  var_dump($data);
+
+  // import class info
+
+  // redirect to /admin/subject and show success
+
+  // or fail
+
+  // test
+  echo "import majors";
+});
+
 $router->get("/admin/import", function(){
   $View = new \View\View("导入向导 &middot; 选课指南后台管理", "2", "5");
   $View->show("admin_import");
