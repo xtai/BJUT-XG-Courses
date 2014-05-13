@@ -18,7 +18,7 @@ class Model{
     session_unset();
     return 1;
   }
-  static protected function md5Password($password){
+  static public function md5Password($password){
     return md5($password . 'taixiaoyu');
   }
   public function getData($viewname){

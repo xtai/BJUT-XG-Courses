@@ -30,8 +30,13 @@ class Application{
 
     // initialize Router
     $router = new \Base\Router();
+
+    // include Fliter Rules
+    include_once __DIR__ . "/../fliters.php";
+
     // include Router Rules
     include_once __DIR__ . "/../routes.php";
+
     // run Router
     $router->run();
   }

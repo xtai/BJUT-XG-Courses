@@ -129,6 +129,86 @@ class ModelAdmin extends Model{
     }
     return $data;
   }
+
+  public function newUser($data)
+  {
+    // get input data
+    $username = $data['username'];
+    $userid = $data['userid'];
+
+    // get user info by userid
+    $majorid = substr($userid, 0, 5);
+    $classid = substr($userid, 0, 6);
+
+    $password = $this->md5Password($userid); 
+    
+    // create new user
+    $user = new \User\User;
+    $user->set('user_id', $userid);
+    $user->set('major_id', $majorid);
+    $user->set('class_id', $classid);
+    $user->set('user_name', $username);
+    $user->set('user_password', $password);
+
+    $userDAO = new \User\UserDAO;
+    if(!$userDAO->insertObject($user))
+    {
+      trigger_error("创建用户失败");
+      header("location: /admin/user");
+    }
+    header("location: /admin/user");  
+  }
+  public function imoortUser($file)
+  {
+    // create new user
+    $user = new \User\User;
+    $userDAO = new \User\UserDAO;
+
+    $row = 1;
+    if (($handle = fopen($file['tmp_name'], "r")) !== FALSE) {
+        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {          
+            $userid = $data[0];
+            $username = $data[1];
+
+            echo $username;
+
+            // get user info by userid
+            $majorid = substr($userid, 0, 5);
+            $classid = substr($userid, 0, 6);
+            $password = \Model\Model::md5Password($userid); 
+
+            $user->set('user_id', $userid);
+            $user->set('major_id', $majorid);
+            $user->set('class_id', $classid);
+            $user->set('user_name', $username);
+            $user->set('user_password', $password);
+
+            $userDAO->insertObject($user);
+
+            $row++;
+        }
+        fclose($handle);
+    }
+    // redirect to /admin/user and show success
+    header("location: /admin/user"); 
+  }
+  public function updateUser($user_ids)
+  {
+    // get User Object
+    $userDAO = new \User\UserDAO;
+    // delete users
+    foreach ($user_ids as $user_id) 
+    { 
+        $user = $userDAO->getObjectByID($user_id);
+        // if user id not exists, return 0
+        if(! $user)
+        {
+          die();
+        }
+        $userDAO->deleteObject($user);
+    }
+    header("location: /admin/user");
+  }
   private function getPageData($page_current_num, $item_total_num, $num_per_page){
     $data = array();
     $data["item_total_num"]   = $item_total_num;
