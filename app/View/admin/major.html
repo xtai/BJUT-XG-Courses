@@ -1,4 +1,4 @@
-<h2>教学计划管理</h2>
+<h2>专业管理</h2>
 <div class="row">
 <div class="col-sm-6">
 <form action="" method="GET">
@@ -14,7 +14,7 @@
 <div class="col-sm-6">
   <div class="btn-group btn-group-justified">
     <div class="btn-group">
-      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newMajor"><span class="glyphicon glyphicon-plus"></span> 添加计划</button>
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newMajor"><span class="glyphicon glyphicon-plus"></span> 添加教学计划</button>
     </div>
     <div class="btn-group">
       <button type="button" class="btn btn-default" data-toggle="modal" data-target="#importMajor" ><span class="glyphicon glyphicon-file"></span> 批量导入</button>
@@ -32,10 +32,10 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" name="myModalLabel">添加教学计划</h4>
       </div>
-      <form action="new" method="post">
+      <form>
         <div class="modal-body">
           <div class="form-group">
-            <input type="text" class="form-control" name="subjectid" placeholder="输入课程编号：">
+            <input type="text" class="form-control" name="subjectid" >
           </div>
         </div>
         <div class="modal-footer">
@@ -54,7 +54,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">导入教学计划</h4>
       </div>
-      <form action="import" method="post">
+      <form >
         <div class="modal-body">
           <div class="form-group">
               <input type="file" class="btn btn-default btn-block" name="file">

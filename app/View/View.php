@@ -108,7 +108,7 @@ class View{
       );
 
     // verify $smstId before call switchTime
-    return $semester[$time];
+    return $semester[$smstID];
   }
   public function switchType($typeID){
     // Todo: maybe make it global
@@ -117,6 +117,7 @@ class View{
       '1' => '公共基础必修课',
       '2' => '学科基础必修课',
       '3' => '实践环节必修课',
+      '4' => '学科基础选修课',
       '5' => '专业任选课',
       '6' => '专业限选课',
       '7' => '经管文法/自然科学/工程技术选修课',

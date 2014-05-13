@@ -29,10 +29,6 @@ if($this->data["page"]["item_total_num"]!=0){
     </div>
     <div class="btn-group">
       <button type="button" class="btn btn-default" data-toggle="modal" data-target="#importSubject"><span class="glyphicon glyphicon-file" ></span> 导入课程</button>
-    </div>
-    <div class="btn-group">
-      <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> 批量删除</button>
-    </div>
   </div>
 </div>
 <!-- Create Subject Modal -->
@@ -43,25 +39,55 @@ if($this->data["page"]["item_total_num"]!=0){
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">添加课程</h4>
       </div>
-      <form action="new" method="post">
-        <div class="modal-body">
+      <div class="modal-body" id="new_body">
+        <form class="form-horizontal">
           <div class="form-group">
-            <input type="text" class="form-control" name="subject_id" placeholder="输入课程编号">
+            <label for="subject_id" class="col-sm-3 control-label">课程编号: </label>
+            <div class="col-sm-8">
+            <input type="text" class="form-control" id="subject_id" name="subject_id" placeholder="输入课程编号" required>
+            </div>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="subject_name" placeholder="输入课程名称">
+            <label for="subject_name" class="col-sm-3 control-label">课程名称: </label>
+            <div class="col-sm-8">
+            <input type="text" class="form-control" id="subject_name" name="subject_name" placeholder="输入课程名称" required>
+            </div>
+          </div>
+           <div class="form-group">
+            <label for="subject_type" class="col-sm-3 control-label">课程所性质: </label>
+            <div class="col-sm-8">
+            <input type="text" class="form-control" id="subject_type" name="subject_type" placeholder="输入课程性质" required>
+            </div>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="subject_major" placeholder="输入课程所属专业"> 
+            <label for="subject_examtype" class="col-sm-3 control-label">课程考试类型: </label>
+            <div class="col-sm-8">
+            <input type="text" class="form-control" id="subject_examtype" name="subject_examtype" placeholder="考试｜考查" required>
+            </div>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="subject_credit" placeholder="输入课程学分">
+            <label for="subject_major" class="col-sm-3 control-label">课程所属专业: </label>
+            <div class="col-sm-8">
+            <input type="text" class="form-control" id="subject_major" name="subject_major" placeholder="输入课程所属专业的ID" required>
+            </div>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="subject_college" placeholder="输入课程所属学院">
+            <label for="subject_credit" class="col-sm-3 control-label">课程学分: </label>
+            <div class="col-sm-8">
+            <input type="text" class="form-control" id="subject_credit" name="subject_credit" placeholder="输入课程学分" required>
+            </div>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="subject_start" placeholder="输入开课时间">
+            <label for="subject_school" class="col-sm-3 control-label">课程所属学院: </label>
+            <div class="col-sm-8">
+            <input type="text" class="form-control" id="subject_school" name="subject_school" placeholder="输入课程所属学院" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject_start" class="col-sm-3 control-label">开课时间: </label>
+            <div class="col-sm-8">
+            <input type="text" class="form-control" id="subject_start" name="subject_start" placeholder="格式：Year-Month-Day" required>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -80,7 +106,7 @@ if($this->data["page"]["item_total_num"]!=0){
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">导入课程</h4>
       </div>
-      <form action="import" method="post">
+      <form id="import_body">
         <div class="modal-body">
           <div class="form-group">
             <input type="file" class="btn btn-default btn-block" name="file">
@@ -103,6 +129,7 @@ echo $this->data["subject"][$start_i]["subject_name"]
     ."(".$this->data["subject"][$end_i]["subject_id"].")";
 ?></p>
 <p>共 <?php echo $this->data["page"]["item_total_num"]; ?> 门课程, 第 <?php echo $this->data["page"]["page_current_num"]; ?> 页</p>
+<form >
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
@@ -114,6 +141,9 @@ echo $this->data["subject"][$start_i]["subject_name"]
       <th class="visible-lg">开课学院</th>
       <th class="visible-lg">开课时间</th>
       <th class="hidden-xs">选课人数</th>
+      <th class="hidden-xs">
+        <input type="submit" class="btn btn-danger btn-block" value="批量删除">
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -135,7 +165,17 @@ echo $this->data["subject"][$start_i]["subject_name"]
         ."<td class=\"hidden-xs\"><a href=\"".$href."\">".$subject_type."</a></td>"
         ."<td class=\"visible-lg\"><a href=\"".$href."\">".$subject_item["subject_school"]."</a></td>"
         ."<td class=\"visible-lg\"><a href=\"".$href."\">".$subject_time."</a></td>"
-        ."<td class=\"hidden-xs\"><a href=\"".$href."\">".$subject_item["subject_enroll"]." 人</a></td></tr>";
+        ."<td class=\"hidden-xs\"><a href=\"".$href."\">".$subject_item["subject_enroll"]." 人</a></td>";
+?>
+  <td> 
+    <div class='checkbox' id="checkbox">
+    <label>
+      <input type='checkbox' name="<?php echo $subject_item['subject_id'] ?>" value="<?php echo $subject_item['subject_id'] ?>">
+    </label>
+    </div>
+  </td>
+  </tr></form>
+<?php
   }
 ?>
   </tbody>
@@ -180,6 +220,14 @@ echo $this->data["subject"][$start_i]["subject_name"]
   }
   #newSubject,#importSubject {
     padding-top: 150px;
+  }
+  #new_body, #import_body
+  {
+    padding-top: 30px;
+  }
+
+  #checkbox{
+    padding-left: 60px;
   }
 </style>
 <link href="<?php echo $this->path; ?>/assets/css/admin.css" rel="stylesheet">

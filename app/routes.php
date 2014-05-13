@@ -148,6 +148,7 @@ $router->get('/user/', function(){
 *   GET  - /admin/user/            User - 学生管理
 *   POST - /admin/user/new         User - 添加学生
 *   POST - /admin/user/import      User - 导入班级
+*   POST - /admin/user/update      User - 批量删除
 *   GET  - /admin/user/?q=.*       User Search
 *   GET  - /admin/user/\w*         User Info
 *   GET  - /admin/subject/         Subject - 课程管理
@@ -201,32 +202,18 @@ $router->get("/admin/user", function(){
   }
 });
 $router->post("/admin/user/new", function(){
-  
-  // get input data
-  $data = $_POST;
-  var_dump($data);
-
-  // create new user
-
-  // redirect to /admin/user and show success
-
-  // or fail
-
+  $ModelAdmin = new \Model\ModelAdmin();
+  $ModelAdmin->newUser($_POST);
 });
 $router->post("/admin/user/import", function(){
 
-  // get input data
-  $data = $_POST;
-  var_dump($data);
-
-  // import class info
-
-  // redirect to /admin/user and show success
-
-  // or fail
-
-  // test route
-  echo "import class";
+  $ModelAdmin = new \Model\ModelAdmin();
+  $ModelAdmin->importUser($_FILES['file']);     
+});
+$router->post('/admin/user/update', function()
+{
+  $ModelAdmin = new \Model\ModelAdmin();
+  $ModelAdmin->updateUser($_POST); 
 });
 $router->get('/admin/user/(\d*)', function($user_id){
   $ModelAdmin = new \Model\ModelAdmin();
@@ -257,11 +244,22 @@ $router->post("/admin/subject/new", function()
 {
   // get input data
   $data = $_POST;
-  var_dump($data);
-
+  var_dump($data);  
   // import class info
+  $subDAO = new \Subject\SubjectDAO;
+  $subject = new \Subject\Subject;
 
+  $subject->set('subject_id', $data['subject_id']);
+  $subject->set('subject_name', $data['subject_name']);
+  $subject->set('major_id', $data['subject_major']);
+  $subject->set('subject_school', $data['subject_school']);
+  $subject->set('subject_time', $data['subject_start']);
+  $subject->set('subject_point', $data['subject_credit']);
+  $subject->set('subject_type', $data['subject_type']);
+  $subject->set('subject_examtype', $data['subject_examtype']);
+  
   // redirect to /admin/subject and show success
+  echo $subDAO->insertObject($subject);
 
   // or return fail
 
