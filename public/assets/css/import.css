@@ -15,6 +15,13 @@ h2{
 .has-done h1{
   color: #5cb85c;
 }
+.has-danger{
+  color: #d9534f;
+  border-color: #d9534f;
+}
+.has-danger h1{
+  color: #d9534f;
+}
 .content{
   transition: all 0.2s;
   -webkit-transition: all 0.2s;
