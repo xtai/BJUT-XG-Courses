@@ -54,7 +54,7 @@ class UserDAO extends \Base\DAO{
         $user_lastpwdchange = "'". $data["user_lastpwdchange"] ."'";
       }
       if($data["user_logintimes"] == ""){
-        $user_logintimes = "NULL";
+        $user_logintimes = 0;
       }else{
         $user_logintimes = "'". $data["user_logintimes"] ."'";
       }

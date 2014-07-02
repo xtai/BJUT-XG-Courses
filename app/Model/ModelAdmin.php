@@ -149,6 +149,7 @@ class ModelAdmin extends Model{
     $user->set('class_id', $classid);
     $user->set('user_name', $username);
     $user->set('user_password', $password);
+    $user->set('user_logintimes', "");
 
     $userDAO = new \User\UserDAO;
     if(!$userDAO->insertObject($user))
